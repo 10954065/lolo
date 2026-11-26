@@ -15,11 +15,14 @@ and the production privilege hardening, and then connect as the restricted `moba
 role the deployed application uses. Security properties of the database are therefore tested as they
 run in production, not as a superuser.
 
-### Windows note
+### Windows notes
 
-Run the test commands from a shell whose current directory uses an upper-case drive letter
-(`E:\onion\election`, not `e:\onion\election`). With a lower-case drive letter Node resolves Vitest twice
-and every suite fails with "Vitest failed to find the runner".
+* Run the test commands from a shell whose current directory uses an upper-case drive letter
+  (`E:\onion\election`, not `e:\onion\election`). With a lower-case drive letter Node resolves Vitest twice
+  and every suite fails with "Vitest failed to find the runner".
+* `@node-rs/argon2` and `sharp` need the **Microsoft Visual C++ 2015–2022 Redistributable (x64)**
+  (`VCRUNTIME140_1.dll`). If tests fail with "Cannot find native binding", install or repair it
+  (`winget install Microsoft.VCRedist.2015+.x64`). Linux hosts such as Vercel are not affected.
 
 ## Coverage of security properties
 
@@ -45,6 +48,9 @@ and every suite fails with "Vitest failed to find the runner".
 | Audit hash chain verifies and contains no secrets | `tests/integration/onboarding.test.ts` |
 | CSV formula-injection protection; CSV import header aliases, duplicates, invalid rows | `tests/unit/csv-and-templates.test.ts` |
 | Email templates escape all variables and allow only http(s) links | `tests/unit/csv-and-templates.test.ts` |
+| Every exported Server Action calls a server-side guard (static scan) | `tests/unit/action-guards.test.ts` |
+| Committee rejected by all 19 mutating services and leaves no trace; voters likewise | `tests/integration/roles.test.ts` |
+| Staff management needs step-up; last active admin protected; no self role/status change | `tests/integration/roles.test.ts` |
 | Production environment guards (https, Resend, cron secret, no file transport) | `tests/unit/env-and-errors.test.ts` |
 
 ## Results log
@@ -53,3 +59,4 @@ and every suite fails with "Vitest failed to find the runner".
 |---|---|---|
 | 2026-11-26 | 2 | 5 files, 39 tests passed (unit + integration). `tsc --noEmit` clean, `eslint .` clean, `next build` succeeded. Manual smoke test: CSP nonce header present, `/admin` without session → 307 to `/login`. |
 | 2026-11-26 | 3 | 8 files, 72 tests passed. Typecheck, lint and build clean (no warnings). Smoke test on `next start`: `/login` 200, invalid reset link handled, `/api/health` 200, `/admin` 307, unauthenticated export 401, cron without secret 401. `admin:create` verified against the dev database. |
+| 2026-11-26 | 4 | 10 files, 141 tests passed. Typecheck, lint and build clean. |

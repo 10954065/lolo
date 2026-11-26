@@ -70,3 +70,5 @@ This file transport is refused in production.
 * Phase 2 — foundation (Next.js, Tailwind/shadcn, schema, migrations, DB hardening, security headers): complete
 * Phase 3 — authentication (Argon2id, sessions, lockout, rate limits, reset, forced change) and member
   management (CRUD, approval, CSV import with preview, credential issuing, email outbox with Resend): complete
+* Phase 4 — roles and permissions (staff accounts with step-up, read-only committee area, audit log viewer
+  with hash-chain verification, settings, database hardening status): complete
