@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:unit": "vitest run --project unit",
     "test:integration": "vitest run --project integration",
@@ -16,7 +16,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:harden": "tsx scripts/db-harden.ts",
-    "admin:create": "tsx scripts/create-admin.ts"
+    "admin:create": "tsx --conditions=react-server scripts/create-admin.ts"
   },
   "dependencies": {
     "@node-rs/argon2": "^2.2.2",

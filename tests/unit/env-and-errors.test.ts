@@ -40,6 +40,14 @@ describe("server environment validation", () => {
     expect(message).toMatch(/RESEND_API_KEY: is required/);
     expect(message).toMatch(/EMAIL_TRANSPORT: file transport is not allowed/);
   });
+
+  it("allows a production build served on localhost (local smoke/E2E runs only)", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("APP_URL", "http://localhost:3000");
+    vi.stubEnv("CRON_SECRET", "");
+    resetEnvCacheForTests();
+    expect(() => env()).not.toThrow();
+  });
 });
 
 describe("domain errors", () => {

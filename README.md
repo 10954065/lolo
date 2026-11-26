@@ -41,7 +41,10 @@ npm run db:migrate                # owner role: applies schema + security functi
 npm run db:harden                 # creates moba_app (INSERT-only on ballot tables)
 npm run db:migrate                # re-applies grants to all tables
 
-# 4. Run
+# 4. Create the first System Administrator (prints a one-time temporary password)
+npm run admin:create -- --email you@example.org --name "Your Name"
+
+# 5. Run
 npm run dev                       # http://localhost:3000
 ```
 
@@ -59,8 +62,11 @@ This file transport is refused in production.
 | `npm run db:generate` | Generate a migration after changing `src/server/db/schema` |
 | `npm run db:migrate` | Apply migrations with the owner role and refresh app-role grants |
 | `npm run db:harden` | Create/rotate the `moba_app` role and apply least-privilege grants |
+| `npm run admin:create` | Bootstrap a System Administrator or Electoral Committee account from the console |
 
 ## Status
 
 * Phase 1 — architecture: complete
 * Phase 2 — foundation (Next.js, Tailwind/shadcn, schema, migrations, DB hardening, security headers): complete
+* Phase 3 — authentication (Argon2id, sessions, lockout, rate limits, reset, forced change) and member
+  management (CRUD, approval, CSV import with preview, credential issuing, email outbox with Resend): complete

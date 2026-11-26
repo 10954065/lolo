@@ -9,6 +9,7 @@ export type ErrorCode =
   | "NOT_FOUND"
   | "CONFLICT"
   | "RATE_LIMITED"
+  | "REAUTH_REQUIRED"
   | "BUSINESS_RULE";
 
 export type FieldErrors = Record<string, string[]>;
@@ -37,6 +38,8 @@ export const conflict = (message: string): AppError => new AppError("CONFLICT", 
 export const rateLimited = (message = "Too many attempts. Please wait a few minutes and try again."): AppError =>
   new AppError("RATE_LIMITED", message);
 export const businessRule = (message: string): AppError => new AppError("BUSINESS_RULE", message);
+export const reauthRequired = (): AppError =>
+  new AppError("REAUTH_REQUIRED", "For your security, please confirm your password to continue.");
 
 export function isAppError(error: unknown): error is AppError {
   return error instanceof AppError;

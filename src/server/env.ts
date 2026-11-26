@@ -11,6 +11,19 @@ const base64Key32 = z
     message: "must be 32 random bytes encoded as base64 (openssl rand -base64 32)",
   });
 
+function isLocalUrl(url: string): boolean {
+  try {
+    return ["localhost", "127.0.0.1", "[::1]"].includes(new URL(url).hostname);
+  } catch {
+    return false;
+  }
+}
+
+/** `KEY=` in a .env file means "not set", not "set to an empty string". */
+function blankAsUndefined<T extends z.ZodType>(schema: T) {
+  return z.preprocess((v) => (typeof v === "string" && v.trim() === "" ? undefined : v), schema);
+}
+
 const envSchema = z
   .object({
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
@@ -18,15 +31,16 @@ const envSchema = z
     APP_URL: z.url().default("http://localhost:3000"),
     APP_SECRET: z.string().min(32, "APP_SECRET must be at least 32 characters"),
     CREDENTIALS_ENCRYPTION_KEY: base64Key32,
-    EMAIL_TRANSPORT: z.enum(["resend", "file"]).optional(),
-    RESEND_API_KEY: z.string().min(1).optional(),
-    RESEND_WEBHOOK_SECRET: z.string().min(1).optional(),
-    EMAIL_FROM: z.string().min(3).default("MOBA 2017 Elections <elections@localhost>"),
-    EMAIL_REPLY_TO: z.email().optional(),
-    CRON_SECRET: z.string().min(16).optional(),
+    EMAIL_TRANSPORT: blankAsUndefined(z.enum(["resend", "file"]).optional()),
+    RESEND_API_KEY: blankAsUndefined(z.string().min(1).optional()),
+    RESEND_WEBHOOK_SECRET: blankAsUndefined(z.string().min(1).optional()),
+    EMAIL_FROM: blankAsUndefined(z.string().min(3).default("MOBA 2017 Elections <elections@localhost>")),
+    EMAIL_REPLY_TO: blankAsUndefined(z.email().optional()),
+    CRON_SECRET: blankAsUndefined(z.string().min(16).optional()),
   })
   .superRefine((env, ctx) => {
-    if (env.NODE_ENV !== "production") return;
+    // Production builds served on localhost (local smoke tests, E2E) are not real deployments.
+    if (env.NODE_ENV !== "production" || isLocalUrl(env.APP_URL)) return;
     if (!env.APP_URL.startsWith("https://")) {
       ctx.addIssue({ code: "custom", path: ["APP_URL"], message: "must use https in production" });
     }

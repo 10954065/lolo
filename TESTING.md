@@ -34,6 +34,17 @@ and every suite fails with "Vitest failed to find the runner".
 | Temporary passwords: CSPRNG, unambiguous alphabet, character classes, uniqueness | `tests/unit/password.test.ts` |
 | AES-256-GCM secret storage with context binding and tamper detection | `tests/unit/crypto.test.ts` |
 | Africa/Accra time conversion | `tests/unit/datetime.test.ts` |
+| Committee has zero write permissions; no permission exposes ballots | `tests/unit/permissions.test.ts` |
+| Committee cannot register, approve, suspend or issue credentials (service level) | `tests/integration/onboarding.test.ts` |
+| Unapproved / rejected / suspended members cannot sign in; sessions revoked on suspension | `tests/integration/onboarding.test.ts` |
+| Temporary credentials force a password change; old sessions revoked; expiry enforced | `tests/integration/onboarding.test.ts` |
+| Identical error for unknown account and wrong password; lockout; per-email rate limit | `tests/integration/onboarding.test.ts` |
+| Plaintext temporary password never stored; ciphertext erased after delivery | `tests/integration/onboarding.test.ts` |
+| Failed delivery retries with backoff, then FAILED; retry re-sends without new password | `tests/integration/onboarding.test.ts` |
+| Password reset: no account enumeration, link single-use, token not stored readable | `tests/integration/onboarding.test.ts` |
+| Audit hash chain verifies and contains no secrets | `tests/integration/onboarding.test.ts` |
+| CSV formula-injection protection; CSV import header aliases, duplicates, invalid rows | `tests/unit/csv-and-templates.test.ts` |
+| Email templates escape all variables and allow only http(s) links | `tests/unit/csv-and-templates.test.ts` |
 | Production environment guards (https, Resend, cron secret, no file transport) | `tests/unit/env-and-errors.test.ts` |
 
 ## Results log
@@ -41,3 +52,4 @@ and every suite fails with "Vitest failed to find the runner".
 | Date | Phase | Result |
 |---|---|---|
 | 2026-11-26 | 2 | 5 files, 39 tests passed (unit + integration). `tsc --noEmit` clean, `eslint .` clean, `next build` succeeded. Manual smoke test: CSP nonce header present, `/admin` without session → 307 to `/login`. |
+| 2026-11-26 | 3 | 8 files, 72 tests passed. Typecheck, lint and build clean (no warnings). Smoke test on `next start`: `/login` 200, invalid reset link handled, `/api/health` 200, `/admin` 307, unauthenticated export 401, cron without secret 401. `admin:create` verified against the dev database. |
