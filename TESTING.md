@@ -51,6 +51,12 @@ run in production, not as a superuser.
 | Every exported Server Action calls a server-side guard (static scan) | `tests/unit/action-guards.test.ts` |
 | Committee rejected by all 19 mutating services and leaves no trace; voters likewise | `tests/integration/roles.test.ts` |
 | Staff management needs step-up; last active admin protected; no self role/status change | `tests/integration/roles.test.ts` |
+| Voting window is half-open `[opensAt, closesAt)`; votes need status AND clock; transition map | `tests/unit/election-rules.test.ts` |
+| Scheduling readiness checks; ballot, candidates, roll and details lock at the opening time (DB clock) | `tests/integration/elections.test.ts` |
+| Automatic open/close on the DB clock, voter notifications, ballots mixed at close | `tests/integration/elections.test.ts` |
+| Emergency withdrawal needs step-up + 20-char reason; extend, postpone, cancel recorded | `tests/integration/elections.test.ts` |
+| Candidate photos re-encoded to 600×600 WebP; non-images rejected by magic bytes | `tests/integration/elections.test.ts` |
+| Committee rejected by every election, position, candidate and roll operation | `tests/integration/elections.test.ts` |
 | Production environment guards (https, Resend, cron secret, no file transport) | `tests/unit/env-and-errors.test.ts` |
 
 ## Results log
@@ -60,3 +66,4 @@ run in production, not as a superuser.
 | 2026-11-26 | 2 | 5 files, 39 tests passed (unit + integration). `tsc --noEmit` clean, `eslint .` clean, `next build` succeeded. Manual smoke test: CSP nonce header present, `/admin` without session → 307 to `/login`. |
 | 2026-11-26 | 3 | 8 files, 72 tests passed. Typecheck, lint and build clean (no warnings). Smoke test on `next start`: `/login` 200, invalid reset link handled, `/api/health` 200, `/admin` 307, unauthenticated export 401, cron without secret 401. `admin:create` verified against the dev database. |
 | 2026-11-26 | 4 | 10 files, 141 tests passed. Typecheck, lint and build clean. |
+| 2026-11-26 | 5 | 12 files, 185 tests passed. Typecheck, lint and build clean. |

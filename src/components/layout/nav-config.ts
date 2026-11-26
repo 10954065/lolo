@@ -7,6 +7,7 @@ import {
   Settings,
   UserCog,
   Users,
+  Vote,
   type LucideIcon,
 } from "lucide-react";
 
@@ -27,7 +28,12 @@ export interface NavSection {
 
 export const NAV: Record<ShellArea, NavSection[]> = {
   admin: [
-    { items: [{ href: "/admin", label: "Overview", icon: LayoutDashboard, isExact: true }] },
+    {
+      items: [
+        { href: "/admin", label: "Overview", icon: LayoutDashboard, isExact: true },
+        { href: "/admin/elections", label: "Elections", icon: Vote },
+      ],
+    },
     {
       title: "Members",
       items: [
@@ -47,7 +53,12 @@ export const NAV: Record<ShellArea, NavSection[]> = {
     },
   ],
   committee: [
-    { items: [{ href: "/committee", label: "Overview", icon: LayoutDashboard, isExact: true }] },
+    {
+      items: [
+        { href: "/committee", label: "Overview", icon: LayoutDashboard, isExact: true },
+        { href: "/committee/elections", label: "Elections", icon: Vote },
+      ],
+    },
     {
       title: "Records",
       items: [
