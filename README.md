@@ -76,3 +76,5 @@ This file transport is refused in production.
   executive positions, candidates with sanitised photos, voter roll and announcements: complete
 * Phase 6 — secure voting engine (transactional one-ballot-per-member submission, anonymous ballot box,
   receipts and public receipt verification, voter dashboard and ballot UI, security review fixes): complete
+* Phase 7 — results (aggregation, turnout, winners, tie detection and recorded tie-breaks, hashed publication
+  snapshot, visibility rules) and reporting (CSV/PDF results, participation, candidates, members, audit): complete

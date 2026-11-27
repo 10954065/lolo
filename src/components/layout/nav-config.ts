@@ -46,6 +46,7 @@ export const NAV: Record<ShellArea, NavSection[]> = {
     {
       title: "Administration",
       items: [
+        { href: "/admin/reports", label: "Reports", icon: FileSpreadsheet },
         { href: "/admin/audit", label: "Audit log", icon: ScrollText },
         { href: "/admin/accounts", label: "Staff accounts", icon: UserCog },
         { href: "/admin/settings", label: "Settings", icon: Settings },
@@ -64,6 +65,7 @@ export const NAV: Record<ShellArea, NavSection[]> = {
       items: [
         { href: "/committee/members", label: "Member records", icon: Users },
         { href: "/committee/emails", label: "Email delivery", icon: Mail },
+        { href: "/committee/reports", label: "Reports", icon: FileSpreadsheet },
         { href: "/committee/audit", label: "Audit log", icon: ScrollText },
       ],
     },

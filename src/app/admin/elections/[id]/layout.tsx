@@ -12,6 +12,7 @@ const TABS = [
   { segment: "candidates", label: "Candidates" },
   { segment: "voters", label: "Voter roll" },
   { segment: "announcements", label: "Announcements" },
+  { segment: "results", label: "Results" },
 ];
 
 export default async function AdminElectionLayout({ children, params }: LayoutProps<"/admin/elections/[id]">) {

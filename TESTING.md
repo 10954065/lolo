@@ -67,6 +67,13 @@ run in production, not as a superuser.
 | Ballot tables have no voter/time/IP columns; receipt only hashed; email has no choices | `tests/integration/voting.test.ts` |
 | Only ballot-box.ts touches ballot tables; voting never logs/audits; UUID v4 ids | `tests/unit/ballot-isolation.test.ts` |
 | Closing irreversible for the app role; tally needs mix; state log append-only; composite FKs | `tests/integration/db-security.test.ts` |
+| Plurality winners, multi-seat, ties never auto-resolved, withdrawn/zero-vote never elected | `tests/unit/results.test.ts` |
+| Results sealed until close; exact counts/percentages/turnout from anonymous ballots | `tests/integration/results.test.ts` |
+| Committee cannot see unpublished results or publish; publishing needs step-up; hashed snapshot | `tests/integration/results.test.ts` |
+| Visibility: eligible voters see published results, outsiders and anonymous users do not | `tests/integration/results.test.ts` |
+| Tie-break outcome recorded only for tied candidates; counts unchanged | `tests/integration/results.test.ts` |
+| Participation export columns contain who/when only | `tests/integration/results.test.ts` |
+| PDF reports render multi-page and survive non-Latin-1 text | `tests/unit/pdf.test.ts` |
 | Production environment guards (https, Resend, cron secret, no file transport) | `tests/unit/env-and-errors.test.ts` |
 
 ## Results log
@@ -78,3 +85,4 @@ run in production, not as a superuser.
 | 2026-11-26 | 4 | 10 files, 141 tests passed. Typecheck, lint and build clean. |
 | 2026-11-26 | 5 | 12 files, 185 tests passed. Typecheck, lint and build clean. |
 | 2026-11-27 | 6 | 15 files, 220 tests passed (incl. security-review regression tests). Typecheck, lint and build clean. Independent security review of the ballot path: no critical findings; H1, H2, M1, M2, L1, L3, L4 fixed. |
+| 2026-11-27 | 7 | 18 files, 230 tests passed. Typecheck, lint and build clean. |

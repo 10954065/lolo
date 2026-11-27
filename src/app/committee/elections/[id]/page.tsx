@@ -52,6 +52,13 @@ export default async function CommitteeElectionPage({ params, searchParams }: Pa
         backHref="/committee/elections"
         backLabel="All elections"
         description={<StatusBadge status={effectiveStatus(election, now)} />}
+        actions={
+          ["RESULTS_PUBLISHED", "ARCHIVED"].includes(election.status) ? (
+            <Button asChild>
+              <Link href={`/committee/elections/${id}/results`}>View published results</Link>
+            </Button>
+          ) : null
+        }
       />
       <div className="space-y-6">
         <ElectionSummary election={election} counts={counts} now={now} />
