@@ -4,12 +4,15 @@ import { PageHeader } from "@/components/layout/page-header";
 import { StatCard } from "@/components/shared/stat-card";
 import { Button } from "@/components/ui/button";
 import { requireRolePage } from "@/server/auth/guards";
+import { ElectionsTable } from "@/components/elections/elections-table";
+import { listElections, syncIfDue } from "@/server/services/elections";
 import { emailStatusCounts } from "@/server/services/email-queue";
 import { memberStats } from "@/server/services/members";
 
 export default async function AdminOverviewPage() {
   const { session } = await requireRolePage("SYSTEM_ADMIN");
-  const [stats, emails] = await Promise.all([memberStats(), emailStatusCounts()]);
+  await syncIfDue();
+  const [stats, emails, elections] = await Promise.all([memberStats(), emailStatusCounts(), listElections()]);
   const awaitingCredentials = stats.credentials.NOT_ISSUED ?? 0;
   const failedEmails = emails.FAILED + emails.BOUNCED + emails.COMPLAINED;
 
@@ -29,6 +32,18 @@ export default async function AdminOverviewPage() {
           </>
         }
       />
+      <section aria-labelledby="elections-heading" className="mb-8 space-y-3">
+        <h2 id="elections-heading" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          Elections
+        </h2>
+        {elections.length ? (
+          <ElectionsTable rows={elections.slice(0, 5)} now={new Date()} basePath="/admin/elections" />
+        ) : (
+          <p className="rounded-xl border border-dashed bg-card p-6 text-sm text-muted-foreground">
+            No elections yet. <Link href="/admin/elections/new" className="font-medium text-brand hover:underline">Create one</Link>.
+          </p>
+        )}
+      </section>
       <section aria-labelledby="members-heading" className="space-y-3">
         <h2 id="members-heading" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Members

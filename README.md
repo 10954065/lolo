@@ -78,3 +78,5 @@ This file transport is refused in production.
   receipts and public receipt verification, voter dashboard and ballot UI, security review fixes): complete
 * Phase 7 — results (aggregation, turnout, winners, tie detection and recorded tie-breaks, hashed publication
   snapshot, visibility rules) and reporting (CSV/PDF results, participation, candidates, members, audit): complete
+* Phase 8 — public pages (landing, about, election information, candidate directory, voting guidelines,
+  help, public results) and completed administrator/committee/voter dashboards: complete
