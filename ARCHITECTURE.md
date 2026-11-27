@@ -183,7 +183,7 @@ two sides.
 | Direct foreign key | None exists. |
 | Predictable / time-ordered IDs | Ballot IDs are UUID **v4** (random). UUID v7/ULID are banned for ballot tables because they embed time. |
 | Timestamps | Ballot rows carry **no** timestamp. Only participation has `voted_at`. |
-| Receipt | Random 128-bit receipt shown to the voter once. Only `sha256(receipt)` is stored, and only on the ballot side. It is never stored with the voter, never emailed, never logged. |
+| Receipt | Random 125-bit receipt (25 Crockford base32 characters) shown to the voter once. Only `sha256(receipt)` is stored, and only on the ballot side. It is never stored with the voter, never emailed, never logged. |
 | Insertion order / physical row order (`ctid`) and transaction id (`xmin`) | While voting is open, participation and ballot rows are written in the same transaction (required for atomicity), so a **database superuser** could correlate them via system columns. The app role cannot read ballot rows at all. When the election closes, `mix_ballots()` re-writes every ballot with new random IDs in random order in one transaction (uniform `xmin`, shuffled `ctid`). |
 | Application logs | The vote path logs no identifiers or selections; errors are logged with a generic code. |
 | Audit log | Casting a vote is **not** written to the audit log (participation is already recorded separately). |
@@ -196,12 +196,14 @@ two sides.
 ```
 BEGIN (READ COMMITTED)
   SELECT election ... FOR SHARE              -- closing takes FOR UPDATE → serialized
-  check status ∈ {SCHEDULED, OPEN} and now() ∈ [opens_at, closes_at)   (DB clock)
   SELECT election_voters row FOR UPDATE      -- serializes tabs/devices of same voter
+  check status ∈ {SCHEDULED, OPEN} and clock_timestamp() ∈ [opens_at, closes_at)
+                                              -- wall clock AFTER the locks: lock waits cannot extend the window
   check member approved+active, user active, password not temporary
-  INSERT voter_participation  (UNIQUE(election_id, member_id) is the hard stop)
+  check no participation yet
   validate selections against frozen positions/approved candidates
-  INSERT ballots (random id, sha256(receipt))
+  INSERT voter_participation  (UNIQUE(election_id, member_id) is the hard stop)
+  INSERT ballots (random id, sha256(receipt))  -- driver errors replaced by a sanitized message
   INSERT ballot_selections (one row per choice / abstention)
 COMMIT
 → return receipt (plaintext) once
@@ -221,11 +223,23 @@ application-level bug (the app's DB role cannot read ballots).
 It is **not** guaranteed against:
 
 * someone holding the **database owner/superuser credentials or Neon account**
-  who performs forensic analysis *while voting is open* (system columns) or of
-  WAL/point-in-time-restore history afterwards;
+  who performs forensic analysis *while voting is open* (system columns) or
+  afterwards of WAL, point-in-time-restore history, backups, or the dead heap
+  tuples and index entries that `mix_ballots()` leaves behind until VACUUM
+  (they still carry the pre-mix ids, `xmin` and physical order);
 * someone who can modify and redeploy the application code during an election.
 
-These parties must be restricted operationally (see SECURITY.md §6).
+Someone able to run arbitrary SQL as the **application** role (e.g. through an
+injection bug) still cannot read individual ballots. They could force an election
+into `CLOSED` to obtain a tally, but a database trigger makes closing
+irreversible (no reopening, no change of the voting window) and every status
+change is recorded in the owner-only `election_state_log`. The tally also
+requires the post-close mix. Such an attack therefore ends voting visibly; it
+cannot be a silent mid-vote peek.
+
+These parties must be restricted operationally (see SECURITY.md §6). After each
+election the operator should run `VACUUM (FULL) ballots, ballot_selections` to
+discard pre-mix tuples.
 This system does **not** implement end-to-end verifiable cryptographic voting
 (e.g. mix-nets or homomorphic tallying) and does not claim to. Receipts prove
 *inclusion* of a ballot in the stored ballot box, not its content.

@@ -28,6 +28,8 @@ const RESTRICTED_GRANTS: ReadonlyArray<{ table: string; privileges: string }> = 
   { table: "audit_logs", privileges: "SELECT, INSERT" },
   { table: "voter_participation", privileges: "SELECT, INSERT" },
   { table: "election_status_history", privileges: "SELECT, INSERT" },
+  // Written only by a SECURITY DEFINER trigger; the app can read it, never write it.
+  { table: "election_state_log", privileges: "SELECT" },
 ];
 
 const FUNCTIONS = [

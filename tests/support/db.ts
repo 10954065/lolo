@@ -18,6 +18,7 @@ const TABLES = [
   "executive_positions",
   "election_voters",
   "election_status_history",
+  "election_state_log",
   "elections",
   "email_delivery_logs",
   "email_jobs",

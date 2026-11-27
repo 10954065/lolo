@@ -74,3 +74,5 @@ This file transport is refused in production.
   with hash-chain verification, settings, database hardening status): complete
 * Phase 5 — elections (lifecycle, scheduling, automatic open/close, ballot freeze, emergency procedures),
   executive positions, candidates with sanitised photos, voter roll and announcements: complete
+* Phase 6 — secure voting engine (transactional one-ballot-per-member submission, anonymous ballot box,
+  receipts and public receipt verification, voter dashboard and ballot UI, security review fixes): complete

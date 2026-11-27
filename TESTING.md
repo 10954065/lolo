@@ -57,6 +57,16 @@ run in production, not as a superuser.
 | Emergency withdrawal needs step-up + 20-char reason; extend, postpone, cancel recorded | `tests/integration/elections.test.ts` |
 | Candidate photos re-encoded to 600×600 WebP; non-images rejected by magic bytes | `tests/integration/elections.test.ts` |
 | Committee rejected by every election, position, candidate and roll operation | `tests/integration/elections.test.ts` |
+| Unapproved / off-roll / suspended / staff accounts cannot vote | `tests/integration/voting.test.ts` |
+| No voting before opening or after closing (DB clock); closure stops new ballots | `tests/integration/voting.test.ts` |
+| Second ballot rejected; 10 concurrent submissions by one member → exactly 1 ballot | `tests/integration/voting.test.ts` |
+| 20 voters concurrently → 20 ballots = 20 participation records | `tests/integration/voting.test.ts` |
+| Invalid ballots (missing/extra/foreign/too many/abstain rules/withdrawn) record nothing | `tests/integration/voting.test.ts` |
+| Failure after participation insert rolls back everything (no partial ballot) | `tests/integration/voting.test.ts` |
+| Close racing with 15 in-flight votes keeps ballots = participation | `tests/integration/voting.test.ts` |
+| Ballot tables have no voter/time/IP columns; receipt only hashed; email has no choices | `tests/integration/voting.test.ts` |
+| Only ballot-box.ts touches ballot tables; voting never logs/audits; UUID v4 ids | `tests/unit/ballot-isolation.test.ts` |
+| Closing irreversible for the app role; tally needs mix; state log append-only; composite FKs | `tests/integration/db-security.test.ts` |
 | Production environment guards (https, Resend, cron secret, no file transport) | `tests/unit/env-and-errors.test.ts` |
 
 ## Results log
@@ -67,3 +77,4 @@ run in production, not as a superuser.
 | 2026-11-26 | 3 | 8 files, 72 tests passed. Typecheck, lint and build clean (no warnings). Smoke test on `next start`: `/login` 200, invalid reset link handled, `/api/health` 200, `/admin` 307, unauthenticated export 401, cron without secret 401. `admin:create` verified against the dev database. |
 | 2026-11-26 | 4 | 10 files, 141 tests passed. Typecheck, lint and build clean. |
 | 2026-11-26 | 5 | 12 files, 185 tests passed. Typecheck, lint and build clean. |
+| 2026-11-27 | 6 | 15 files, 220 tests passed (incl. security-review regression tests). Typecheck, lint and build clean. Independent security review of the ballot path: no critical findings; H1, H2, M1, M2, L1, L3, L4 fixed. |

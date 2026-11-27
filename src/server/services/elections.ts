@@ -305,6 +305,19 @@ async function closeInTx(tx: Transaction, actor: Actor, election: ElectionRow, r
   const closesAt = election.closesAt.getTime() < now.getTime() ? election.closesAt : now;
   await tx.update(elections).set({ status: "CLOSED", closesAt, updatedAt: new Date() }).where(eq(elections.id, election.id));
   const mixed = await mixBallots(tx, election.id);
+  // Reconcile the anonymous ballot box with the participation records (detects stuffing/loss).
+  const [{ n: participation }] = await tx
+    .select({ n: count() })
+    .from(voterParticipation)
+    .where(eq(voterParticipation.electionId, election.id));
+  if (Number(participation) !== mixed) {
+    await recordAudit(tx, actor, {
+      action: "INTEGRITY_WARNING",
+      resourceType: "election",
+      resourceId: election.id,
+      summary: `Ballot count (${mixed}) does not match participation records (${Number(participation)}) for “${election.title}”. Results cannot be published until investigated.`,
+    });
+  }
   await recordTransition(
     tx,
     actor,
@@ -341,10 +354,13 @@ export async function transitionElection(actor: Actor, electionId: string, to: E
   if (to === "RESULTS_PUBLISHED") throw businessRule("Use “Publish results” on the results page.");
   await getDb().transaction(async (tx) => {
     const election = await lockElection(tx, electionId);
-    if (!canTransition(election.status, to)) {
-      throw businessRule(`An election cannot move from ${election.status} to ${to}.`);
-    }
     const now = await dbNow(tx);
+    // A scheduled election whose opening time has passed is open in effect (the scheduler may
+    // not have persisted the transition yet), so it can be closed directly.
+    const current = election.status === "SCHEDULED" && votingWindow(election, now) !== "BEFORE" ? "OPEN" : election.status;
+    if (!canTransition(current, to)) {
+      throw businessRule(`An election cannot move from ${current} to ${to}.`);
+    }
     if (to === "OPEN") return openInTx(tx, actor, election);
     if (to === "CLOSED") {
       if (election.status === "RESULTS_PUBLISHED") throw businessRule("Use “Unpublish results” on the results page.");

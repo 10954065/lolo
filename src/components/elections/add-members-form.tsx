@@ -23,7 +23,7 @@ export function AddMembersForm({ action, members }: { action: ServerAction; memb
         <legend className="sr-only">Members to add</legend>
         {members.map((m) => (
           <label key={m.id} className="flex items-center gap-3 rounded px-2 py-1.5 text-sm hover:bg-muted">
-            <input type="checkbox" name="memberId" value={m.id} className="size-4 accent-[var(--brand)]" />
+            <input type="checkbox" name="memberId" value={m.id} className="size-4 accent-brand" />
             <span className="min-w-0">
               <span className="font-medium">{m.fullName}</span>{" "}
               <span className="text-muted-foreground">

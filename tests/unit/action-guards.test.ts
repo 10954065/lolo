@@ -9,7 +9,14 @@ import { describe, expect, it } from "vitest";
 
 const ACTIONS_DIR = path.resolve("src/server/actions");
 /** Intentionally public: they establish or recover a session. */
-const PUBLIC_ACTIONS = new Set(["loginAction", "logoutAction", "forgotPasswordAction", "resetPasswordAction"]);
+const PUBLIC_ACTIONS = new Set([
+  "loginAction",
+  "logoutAction",
+  "forgotPasswordAction",
+  "resetPasswordAction",
+  // Inclusion check only (returns which election, never content); rate-limited per IP.
+  "verifyReceiptAction",
+]);
 const GUARD = /await\s+require(Permission|Active|Session|Voter)Action\(/;
 
 function exportedActions(source: string): Array<{ name: string; body: string }> {

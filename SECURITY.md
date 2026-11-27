@@ -76,9 +76,14 @@ or application logs, no choices in emails/receipts/exports.
 
 ### Integrity
 * One-vote guarantee: unique constraint + row lock + transactional insert.
-* Window enforcement uses the database clock inside the vote transaction;
-  closing takes a conflicting row lock so a vote is either fully before or
-  fully rejected.
+* Window enforcement uses the database wall clock (`clock_timestamp()`) read
+  after the vote transaction holds its locks; closing takes a conflicting row
+  lock so a vote is either fully before the close or rejected.
+* Closing is irreversible at the database level; tallies require the
+  post-close mix; ballot and participation counts are reconciled at close
+  (mismatch → `INTEGRITY_WARNING` audit entry and publication is refused).
+* Composite foreign keys tie every ballot selection to a position and
+  candidate of the same election.
 * Ballot structure frozen at opening; emergency changes restricted, reasoned,
   re-authenticated and audited.
 * Selections validated server-side against approved candidates of the
@@ -152,7 +157,15 @@ accounts held by different people, each reviewing the audit log.
 
 * No end-to-end cryptographic verifiability (see ARCHITECTURE.md §4.4).
 * A database superuser can correlate rows via system columns while voting is
-  open, and point-in-time history retains pre-mix state.
+  open; point-in-time history, backups and not-yet-vacuumed dead tuples retain
+  pre-mix state (run `VACUUM (FULL) ballots, ballot_selections` after each
+  election).
+* The app role can still force an election closed early (visible and
+  irreversible, logged in `election_state_log`); it cannot read ballots or reopen.
+* A candidate withdrawn in the instant between ballot validation and commit can
+  still receive that one vote (reported transparently with the withdrawn label).
+* Phase 6 security review (2026-11-27) findings H1, H2, M1, M2, L1, L3, L4 were
+  fixed in migration `0002_ballot_hardening` and the voting service; see TESTING.md.
 * Email is not end-to-end confidential; temporary credentials rely on
   expiry + forced change.
 * No multi-factor authentication for staff accounts in this release; it is

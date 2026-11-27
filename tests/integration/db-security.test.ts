@@ -85,6 +85,44 @@ describe("append-only records", () => {
   });
 });
 
+describe("irreversible close (security review H1)", () => {
+  it("refuses to tally a closed election until its ballots are mixed, and refuses to reopen it", async () => {
+    const res = await app.query<{ id: string }>(
+      `INSERT INTO elections (title, election_year, status, opens_at, closes_at)
+       VALUES ('Peek test', 2026, 'OPEN', now() - interval '1 hour', now() + interval '1 hour') RETURNING id`,
+    );
+    const id = res.rows[0].id;
+    await app.query("UPDATE elections SET status = 'CLOSED' WHERE id = $1", [id]);
+    await expect(app.query("SELECT * FROM election_tally($1)", [id])).rejects.toThrow(/tally is unavailable/);
+    await expect(app.query("UPDATE elections SET status = 'OPEN' WHERE id = $1", [id])).rejects.toThrow(/cannot be reopened/);
+    await expect(app.query("UPDATE elections SET closes_at = now() + interval '1 day' WHERE id = $1", [id])).rejects.toThrow(
+      /cannot change/,
+    );
+  });
+
+  it("logs every status change in a table the app role can read but never write", async () => {
+    const { rows } = await app.query<{ n: number }>("SELECT count(*)::int AS n FROM election_state_log");
+    expect(rows[0].n).toBeGreaterThan(0);
+    await expect(app.query("DELETE FROM election_state_log")).rejects.toThrow(/permission denied/);
+    await expect(
+      app.query("INSERT INTO election_state_log (election_id, new_status, new_opens_at, new_closes_at) VALUES ($1, 'OPEN', now(), now())", [
+        electionId,
+      ]),
+    ).rejects.toThrow(/permission denied/);
+  });
+
+  it("rejects a ballot selection whose candidate belongs to another election", async () => {
+    await expect(
+      app.query("INSERT INTO ballot_selections (ballot_id, election_id, position_id, candidate_id) VALUES ($1, $2, $3, $4)", [
+        randomUUID(),
+        electionId,
+        randomUUID(),
+        randomUUID(),
+      ]),
+    ).rejects.toThrow(/foreign key/);
+  });
+});
+
 describe("mixing after close", () => {
   it("re-keys every ballot and keeps the tally identical", async () => {
     const positionRes = await app.query<{ id: string }>(

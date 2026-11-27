@@ -68,7 +68,15 @@ export const NAV: Record<ShellArea, NavSection[]> = {
       ],
     },
   ],
-  voter: [{ items: [{ href: "/dashboard", label: "Home", icon: LayoutDashboard, isExact: true }] }],
+  voter: [
+    {
+      items: [
+        { href: "/dashboard", label: "My elections", icon: LayoutDashboard, isExact: true },
+        { href: "/dashboard/profile", label: "My profile", icon: UserCog },
+        { href: "/verify-receipt", label: "Verify a receipt", icon: ScrollText },
+      ],
+    },
+  ],
 };
 
 export const AREA_LABEL: Record<ShellArea, string> = {

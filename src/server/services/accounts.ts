@@ -204,7 +204,8 @@ export async function resetStaffCredentials(actor: Actor, id: string, reasonInpu
 export async function revokeStaffSessions(actor: Actor, id: string, currentSessionId: string): Promise<void> {
   if (id !== actor.userId) assertCan(actor, "accounts.manage");
   await getDb().transaction(async (tx) => {
-    const user = await lockStaff(tx, id);
+    // Anyone may sign out their own other devices; only admins may act on staff accounts.
+    const user = id === actor.userId ? { fullName: actor.label } : await lockStaff(tx, id);
     await invalidateUserSessions(tx, id, id === actor.userId ? currentSessionId : undefined);
     await recordAudit(tx, actor, {
       action: "SESSIONS_REVOKED",
