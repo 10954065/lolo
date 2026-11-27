@@ -131,7 +131,7 @@ export function MembersTable({ rows, basePath, canManage }: MembersTableProps) {
                   </Link>
                   <p className="text-xs text-muted-foreground">{r.email}</p>
                 </TableCell>
-                <TableCell className="hidden md:table-cell">{r.membershipNumber ?? "—"}</TableCell>
+                <TableCell className="hidden md:table-cell">{r.membershipNumber ?? "None"}</TableCell>
                 <TableCell>
                   <StatusBadge status={r.approvalStatus} />
                 </TableCell>

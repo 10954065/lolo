@@ -230,8 +230,8 @@ export default async function AdminMemberPage({ params, searchParams }: PageProp
                         and the member is signed out.
                       </p>
                       <p>
-                        If an earlier credentials email merely failed to send, use “Retry” in the email history instead
-                        — it re-sends the same credentials.
+                        If an earlier credentials email merely failed to send, use “Retry” in the email history instead.
+                        It re-sends the same credentials.
                       </p>
                     </div>
                   }

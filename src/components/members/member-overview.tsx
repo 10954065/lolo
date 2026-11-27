@@ -29,9 +29,9 @@ export function MemberSummaryCard({ record }: { record: MemberRecord }) {
       <CardContent>
         <dl className="grid gap-4 sm:grid-cols-2">
           <Field label="Email">{member.email}</Field>
-          <Field label="Phone">{member.phone ?? "—"}</Field>
-          <Field label="Membership no.">{member.membershipNumber ?? "—"}</Field>
-          <Field label="Gender">{member.gender ?? "—"}</Field>
+          <Field label="Phone">{member.phone ?? "Not provided"}</Field>
+          <Field label="Membership no.">{member.membershipNumber ?? "Not provided"}</Field>
+          <Field label="Gender">{member.gender ?? "Not provided"}</Field>
           <Field label="Registered">{formatDateTime(member.registeredAt)}</Field>
           <Field label="Approval">
             <StatusBadge status={member.approvalStatus} />
@@ -48,7 +48,7 @@ export function MemberSummaryCard({ record }: { record: MemberRecord }) {
           </Field>
           <Field label="Last sign-in">{formatDateTime(user?.lastLoginAt, "Never")}</Field>
           <Field label="Temporary password expires">
-            {user?.mustChangePassword ? formatDateTime(user.tempPasswordExpiresAt) : "—"}
+            {user?.mustChangePassword ? formatDateTime(user.tempPasswordExpiresAt) : "Not applicable"}
           </Field>
           {member.rejectionReason ? <Field label="Rejection reason">{member.rejectionReason}</Field> : null}
           {user?.lockedUntil && user.lockedUntil > new Date() ? (

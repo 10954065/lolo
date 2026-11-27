@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s · MOBA 2017 Elections",
   },
   description:
-    "The official digital election platform of MOBA 2017 — Mfantsipim Old Boys Association, 2017 year group.",
+    "The official digital election platform of MOBA 2017, the 2017 year group of the Mfantsipim Old Boys Association.",
   applicationName: "MOBA 2017 Elections",
   robots: { index: false, follow: false },
 };

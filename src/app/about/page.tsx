@@ -9,8 +9,8 @@ export default function AboutPage() {
       <article className="max-w-3xl space-y-5">
         <h1 className="text-3xl font-bold text-navy">About MOBA 2017</h1>
         <p>
-          MOBA 2017 is the 2017 year group of the Mfantsipim Old Boys Association. Members elect the year-group executives —
-          such as the President, Secretaries, Treasurer and other officers — to lead the group and represent it within the
+          MOBA 2017 is the 2017 year group of the Mfantsipim Old Boys Association. Members elect the year-group executives,
+          such as the President, Secretaries, Treasurer and other officers, to lead the group and represent it within the
           wider association.
         </p>
         <h2 className="text-xl font-semibold text-navy">Why an online election?</h2>

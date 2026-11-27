@@ -241,7 +241,7 @@ export async function createElection(actor: Actor, input: unknown): Promise<stri
       action: "ELECTION_CREATED",
       resourceType: "election",
       resourceId: created.id,
-      summary: `Created election “${data.title}” (${formatDateTime(data.opensAt)} – ${formatDateTime(data.closesAt)})`,
+      summary: `Created election “${data.title}” (${formatDateTime(data.opensAt)} to ${formatDateTime(data.closesAt)})`,
     });
     return created.id;
   });
@@ -420,7 +420,7 @@ export async function postponeElection(
       "SCHEDULED",
       reason,
       "ELECTION_POSTPONED",
-      `Postponed “${election.title}” to ${formatDateTime(opens.data)} – ${formatDateTime(closes.data)}`,
+      `Postponed “${election.title}”: voting now runs from ${formatDateTime(opens.data)} to ${formatDateTime(closes.data)}`,
       { previousOpensAt: election.opensAt, previousClosesAt: election.closesAt },
     );
     await notifyVoterRoll(tx, { ...election, opensAt: opens.data, closesAt: closes.data }, "election_announcement", {

@@ -63,8 +63,7 @@ export default async function CommitteeOverviewPage() {
             <p>
               <Link href="/committee/audit?verify=1" className="font-medium text-brand hover:underline">
                 Verify the integrity of the audit log
-              </Link>{" "}
-              — recomputes the hash chain over every recorded action.
+              </Link>. This recomputes the hash chain over every recorded action.
             </p>
           </CardContent>
         </Card>

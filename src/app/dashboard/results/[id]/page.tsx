@@ -17,7 +17,7 @@ export default async function VoterResultsPage({ params }: PageProps<"/dashboard
   if (!published) notFound();
   return (
     <>
-      <PageHeader title={`Results — ${election.title}`} backHref="/dashboard" backLabel="My dashboard" />
+      <PageHeader title={`Results: ${election.title}`} backHref="/dashboard" backLabel="My dashboard" />
       <ResultsView
         snapshot={published.snapshot}
         resolutions={await listTieResolutions(id)}

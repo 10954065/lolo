@@ -113,7 +113,7 @@ export function BallotForm({ electionId, electionTitle, positions, action }: Bal
             </li>
             <li className="flex gap-2">
               <ShieldCheck className="mt-0.5 size-4 shrink-0" aria-hidden /> The receipt is not linked to your name. Write it
-              down now if you want to confirm later that your ballot was counted — it will not be shown again or emailed.
+              down now if you want to confirm later that your ballot was counted. It will not be shown again or emailed.
             </li>
           </ul>
           <div className="flex flex-wrap justify-center gap-2">

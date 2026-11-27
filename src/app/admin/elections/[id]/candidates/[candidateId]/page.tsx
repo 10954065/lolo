@@ -55,11 +55,11 @@ export default async function CandidatePage({ params }: PageProps<"/admin/electi
             <div className="space-y-4 text-sm">
               <div>
                 <h3 className="font-semibold text-navy">Biography</h3>
-                <PlainText text={c.biography || "—"} className="text-muted-foreground" />
+                <PlainText text={c.biography || "Not provided."} className="text-muted-foreground" />
               </div>
               <div>
                 <h3 className="font-semibold text-navy">Manifesto</h3>
-                <PlainText text={c.manifesto || "—"} className="text-muted-foreground" />
+                <PlainText text={c.manifesto || "Not provided."} className="text-muted-foreground" />
               </div>
             </div>
           ) : (

@@ -109,7 +109,7 @@ This is an automated message from the ${escapeHtml(orgName)} Digital Election Ma
 Platform developed by Sunleon Router Enterprise.
 </td></tr>
 </table></td></tr></table></body></html>`;
-  const text = `${title}\n\n${greeting}\n\n${blocks.map(renderBlockText).join("\n\n")}\n\n--\n${orgName} Digital Election Management System`;
+  const text = `${title}\n\n${greeting}\n\n${blocks.map(renderBlockText).join("\n\n")}\n\n${orgName} Digital Election Management System`;
   return { html, text };
 }
 
@@ -150,7 +150,7 @@ const TEMPLATES: Record<EmailTemplate, TemplateFn> = {
     blocks: [
       {
         kind: "p",
-        text: "Here are your personal login details for the MOBA 2017 election platform. Keep them private — do not forward this email.",
+        text: "Here are your personal login details for the MOBA 2017 election platform. Keep them private and do not forward this email.",
       },
       {
         kind: "facts",
@@ -184,7 +184,7 @@ const TEMPLATES: Record<EmailTemplate, TemplateFn> = {
       { kind: "button", text: "Choose a new password", href: val(secrets, "resetUrl") },
       {
         kind: "note",
-        text: `This link can be used once and expires in ${val(vars, "expiresInMinutes")} minutes. If you did not request a reset, ignore this email — your password will not change.`,
+        text: `This link can be used once and expires in ${val(vars, "expiresInMinutes")} minutes. If you did not request a reset, ignore this email. Your password will not change.`,
       },
     ],
   }),
@@ -200,7 +200,7 @@ const TEMPLATES: Record<EmailTemplate, TemplateFn> = {
   }),
   election_opening: (vars) => ({
     title: `Voting is now open: ${val(vars, "electionTitle")}`,
-    subject: `Voting is open — ${val(vars, "electionTitle")}`,
+    subject: `Voting is open: ${val(vars, "electionTitle")}`,
     blocks: [
       {
         kind: "p",
@@ -208,12 +208,12 @@ const TEMPLATES: Record<EmailTemplate, TemplateFn> = {
       },
       { kind: "facts", facts: [["Voting closes", val(vars, "closesAt")]] },
       { kind: "button", text: "Go to the ballot", href: val(vars, "electionUrl") },
-      { kind: "note", text: "Your vote is secret. Nobody — including the administrators — can see how you voted." },
+      { kind: "note", text: "Your vote is secret. Nobody, including the administrators, can see how you voted." },
     ],
   }),
   election_reminder: (vars) => ({
     title: `Reminder: ${val(vars, "electionTitle")}`,
-    subject: `Reminder — please vote in ${val(vars, "electionTitle")}`,
+    subject: `Reminder: please vote in ${val(vars, "electionTitle")}`,
     blocks: [
       { kind: "p", text: "Our records show you have not yet voted. There is still time." },
       { kind: "facts", facts: [["Voting closes", val(vars, "closesAt")]] },
@@ -222,7 +222,7 @@ const TEMPLATES: Record<EmailTemplate, TemplateFn> = {
   }),
   election_closing: (vars) => ({
     title: `Voting has closed: ${val(vars, "electionTitle")}`,
-    subject: `Voting closed — ${val(vars, "electionTitle")}`,
+    subject: `Voting closed: ${val(vars, "electionTitle")}`,
     blocks: [
       { kind: "p", text: "Voting has now closed. Thank you to everyone who took part." },
       {
@@ -245,7 +245,7 @@ const TEMPLATES: Record<EmailTemplate, TemplateFn> = {
   }),
   results_published: (vars) => ({
     title: `Results published: ${val(vars, "electionTitle")}`,
-    subject: `Results — ${val(vars, "electionTitle")}`,
+    subject: `Results: ${val(vars, "electionTitle")}`,
     blocks: [
       { kind: "p", text: "The official results have been published." },
       { kind: "button", text: "View results", href: val(vars, "resultsUrl") },

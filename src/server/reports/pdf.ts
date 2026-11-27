@@ -52,7 +52,7 @@ export async function buildPdfReport(title: string, subtitle: string, sections: 
   const header = () => {
     page.drawRectangle({ x: 0, y: PAGE.height - 56, width: PAGE.width, height: 56, color: RED });
     page.drawText("MOBA", { x: PAGE.margin, y: PAGE.height - 34, size: 20, font: bold, color: rgb(1, 1, 1) });
-    page.drawText("Mfantsipim Old Boys Association - 2017 Year Group", {
+    page.drawText("Mfantsipim Old Boys Association, 2017 Year Group", {
       x: PAGE.margin + 70,
       y: PAGE.height - 31,
       size: 9,
@@ -114,7 +114,7 @@ export async function buildPdfReport(title: string, subtitle: string, sections: 
   const pages = doc.getPages();
   const stamp = new Date().toISOString().replace("T", " ").slice(0, 16);
   pages.forEach((p, i) =>
-    p.drawText(`Generated ${stamp} UTC - Page ${i + 1} of ${pages.length}`, { x: PAGE.margin, y: 24, size: 7.5, font, color: GREY }),
+    p.drawText(`Generated ${stamp} UTC. Page ${i + 1} of ${pages.length}`, { x: PAGE.margin, y: 24, size: 7.5, font, color: GREY }),
   );
   return doc.save();
 }

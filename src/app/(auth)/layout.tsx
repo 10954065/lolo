@@ -15,7 +15,7 @@ export default function AuthLayout({ children }: LayoutProps<"/">) {
           <ul className="space-y-4 text-white/85">
             <li className="flex gap-3">
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-brand-soft" aria-hidden />
-              Your ballot is secret. Nobody — including the administrators — can see how you voted.
+              Your ballot is secret. Nobody, including the administrators, can see how you voted.
             </li>
             <li className="flex gap-3">
               <Vote className="mt-0.5 size-5 shrink-0 text-brand-soft" aria-hidden />

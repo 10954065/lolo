@@ -338,7 +338,7 @@ export async function recordTieResolution(
       resourceType: "election",
       resourceId: electionId,
       summary: `Recorded tie-break outcome for ${position.title} in “${election.title}”: ${candidate.fullName}`,
-      reason: `${parsed.data.method}${parsed.data.notes ? ` — ${parsed.data.notes}` : ""}`,
+      reason: `${parsed.data.method}${parsed.data.notes ? `: ${parsed.data.notes}` : ""}`,
     });
   });
 }

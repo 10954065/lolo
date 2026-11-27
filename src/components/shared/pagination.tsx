@@ -26,7 +26,7 @@ export function Pagination({ page, pageSize, total, params, basePath }: Paginati
   return (
     <nav className="flex items-center justify-between gap-4 pt-4 text-sm" aria-label="Pagination">
       <p className="text-muted-foreground">
-        Showing <span className="font-medium text-foreground">{from}</span>–
+        Showing <span className="font-medium text-foreground">{from}</span> to{" "}
         <span className="font-medium text-foreground">{to}</span> of{" "}
         <span className="font-medium text-foreground">{total}</span>
       </p>

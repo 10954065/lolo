@@ -37,7 +37,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
       </main>
       <footer className="border-t bg-navy text-white/80">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-6 text-sm sm:flex-row sm:justify-between">
-          <p>MOBA 2017 — Mfantsipim Old Boys Association, 2017 Year Group</p>
+          <p>MOBA 2017, Mfantsipim Old Boys Association, 2017 Year Group</p>
           <p>
             <Link href="/verify-receipt" className="underline-offset-2 hover:underline">
               Verify a ballot receipt

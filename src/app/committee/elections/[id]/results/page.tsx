@@ -16,7 +16,7 @@ export default async function CommitteeResultsPage({ params }: PageProps<"/commi
   const published = await publishedSnapshot(id);
   return (
     <>
-      <PageHeader title={`Results — ${election.title}`} backHref={`/committee/elections/${id}`} backLabel="Election" />
+      <PageHeader title={`Results: ${election.title}`} backHref={`/committee/elections/${id}`} backLabel="Election" />
       {published ? (
         <ResultsView
           snapshot={published.snapshot}

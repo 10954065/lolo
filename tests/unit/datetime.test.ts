@@ -28,7 +28,7 @@ describe("Africa/Accra date handling", () => {
   it("formats for display with a GMT marker and handles empty values", () => {
     expect(formatDateTime("2026-12-05T08:30:00Z")).toContain("08:30 GMT");
     expect(formatDate("2026-12-05T08:30:00Z")).toBe("5 Dec 2026");
-    expect(formatDateTime(null)).toBe("—");
+    expect(formatDateTime(null)).toBe("Not set");
     expect(toZonedInputValue(undefined)).toBe("");
   });
 

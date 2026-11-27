@@ -37,7 +37,7 @@ export default async function HomePage() {
           </div>
           <p className="flex items-start gap-2 text-sm text-muted-foreground">
             <ShieldCheck className="mt-0.5 size-4 shrink-0 text-success" aria-hidden />
-            Your vote is secret. Ballots are stored separately from member records, and nobody — including administrators —
+            Your vote is secret. Ballots are stored separately from member records, and nobody, including administrators,
             can see how you voted.
           </p>
         </div>

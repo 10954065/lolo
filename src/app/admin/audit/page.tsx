@@ -11,7 +11,7 @@ export default async function AdminAuditPage({ searchParams }: PageProps<"/admin
     <>
       <PageHeader
         title="Audit log"
-        description="Every administrative action is recorded in an append-only, hash-chained log that nobody — including administrators — can edit or delete. Ballot choices are never recorded."
+        description="Every administrative action is recorded in an append-only, hash-chained log that nobody, including administrators, can edit or delete. Ballot choices are never recorded."
       />
       <AuditLogView searchParams={await searchParams} basePath="/admin/audit" />
     </>

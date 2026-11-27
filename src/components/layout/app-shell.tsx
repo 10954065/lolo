@@ -107,7 +107,7 @@ export function AppShell({ area, userName, userEmail, children }: AppShellProps)
             className="flex items-center justify-center gap-2 bg-warning-soft px-4 py-2 text-center text-sm font-semibold text-warning"
           >
             <Eye className="size-4" aria-hidden />
-            READ-ONLY ACCESS — Electoral Committee observers can view but cannot change anything.
+            READ-ONLY ACCESS: Electoral Committee observers can view but cannot change anything.
           </div>
         ) : null}
 

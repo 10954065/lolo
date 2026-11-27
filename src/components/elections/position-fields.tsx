@@ -26,7 +26,7 @@ export function PositionFields({ values }: { values?: PositionValues }) {
           max={10}
           required
           defaultValue={String(values?.maxSelections ?? 1)}
-          hint="Normally 1 — one candidate per position."
+          hint="Normally 1: one candidate per position."
         />
         <TextField
           name="maxCandidates"

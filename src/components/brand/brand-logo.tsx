@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
  */
 const LOGO_SRC = "/brand/moba-logo.png";
 
+type LogoState = "loading" | "loaded" | "failed";
+
 type BrandLogoProps = {
   className?: string;
   /** "full" shows the association name; "compact" is for headers and sidebars. */
@@ -17,21 +19,7 @@ type BrandLogoProps = {
   isInverted?: boolean;
 };
 
-export function BrandLogo({ className, variant = "compact", isInverted = false }: BrandLogoProps) {
-  const [hasImageFailed, setHasImageFailed] = useState(false);
-
-  if (!hasImageFailed && !isInverted) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element -- optional asset; must degrade gracefully
-      <img
-        src={LOGO_SRC}
-        alt="MOBA — Mfantsipim Old Boys Association"
-        className={cn(variant === "full" ? "h-20 w-auto" : "h-10 w-auto", className)}
-        onError={() => setHasImageFailed(true)}
-      />
-    );
-  }
-
+function Wordmark({ className, variant, isInverted }: Required<Omit<BrandLogoProps, "className">> & { className?: string }) {
   return (
     <span className={cn("inline-flex flex-col leading-none", className)} aria-label="MOBA 2017">
       <span
@@ -49,6 +37,36 @@ export function BrandLogo({ className, variant = "compact", isInverted = false }
         </span>
       ) : null}
     </span>
+  );
+}
+
+export function BrandLogo({ className, variant = "compact", isInverted = false }: BrandLogoProps) {
+  const [state, setState] = useState<LogoState>("loading");
+
+  if (isInverted || state === "failed") {
+    return <Wordmark className={className} variant={variant} isInverted={isInverted} />;
+  }
+
+  // The image may finish (or fail) before React hydrates, in which case onLoad/onError
+  // never fire. The ref callback inspects the element once it is attached to catch that.
+  const inspect = (img: HTMLImageElement | null) => {
+    if (!img || !img.complete) return;
+    setState(img.naturalWidth > 0 ? "loaded" : "failed");
+  };
+
+  return (
+    <>
+      {state === "loading" ? <Wordmark className={className} variant={variant} isInverted={false} /> : null}
+      {/* eslint-disable-next-line @next/next/no-img-element -- optional asset; must degrade gracefully */}
+      <img
+        ref={inspect}
+        src={LOGO_SRC}
+        alt="MOBA, Mfantsipim Old Boys Association"
+        className={cn(variant === "full" ? "h-20 w-auto" : "h-10 w-auto", state === "loading" && "hidden", className)}
+        onLoad={() => setState("loaded")}
+        onError={() => setState("failed")}
+      />
+    </>
   );
 }
 

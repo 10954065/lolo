@@ -52,7 +52,7 @@ export default async function PositionsPage({ params }: PageProps<"/admin/electi
       )}
       {positions.length === 0 ? (
         <p className="rounded-xl border border-dashed bg-card p-8 text-center text-sm text-muted-foreground">
-          No positions yet. Positions are configured per election — nothing is hard-coded.
+          No positions yet. Positions are configured for each election, so nothing is fixed in advance.
         </p>
       ) : (
         <ol className="space-y-3">

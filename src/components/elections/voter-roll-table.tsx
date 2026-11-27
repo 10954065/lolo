@@ -34,7 +34,7 @@ export function VoterRollTable({ rows, renderAction }: { rows: Rows; renderActio
                   <p className="font-medium">{r.fullName}</p>
                   <p className="text-xs text-muted-foreground">{r.email}</p>
                 </TableCell>
-                <TableCell className="hidden md:table-cell">{r.membershipNumber ?? "—"}</TableCell>
+                <TableCell className="hidden md:table-cell">{r.membershipNumber ?? "None"}</TableCell>
                 <TableCell className="hidden sm:table-cell">
                   <StatusBadge status={r.accountStatus} />
                 </TableCell>

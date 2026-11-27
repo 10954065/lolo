@@ -19,7 +19,7 @@ export default async function AdminResultsPage({ params }: PageProps<"/admin/ele
   if (!(TALLY_STATUSES as readonly string[]).includes(election.status)) {
     return (
       <p className="flex items-center gap-2 rounded-lg border bg-muted p-4 text-sm text-muted-foreground">
-        <Lock className="size-4" aria-hidden /> Results are sealed until voting closes. Nobody — including administrators — can
+        <Lock className="size-4" aria-hidden /> Results are sealed until voting closes. Nobody, including administrators, can
         see vote counts during voting. Participation is shown on the overview and voter roll.
       </p>
     );

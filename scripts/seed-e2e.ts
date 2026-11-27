@@ -80,10 +80,18 @@ async function main(): Promise<void> {
     ["President", ["Kwame Mensah", "Kofi Asare"]],
     ["General Secretary", ["Yaw Boateng", "Ekow Sam"]],
   ] as const;
+  // One candidate gets a real photograph so the E2E suite can check images render.
+  const { default: sharp } = await import("sharp");
+  const photo = await sharp({ create: { width: 320, height: 320, channels: 3, background: "#b3001b" } }).png().toBuffer();
   for (const [title, names] of ballot) {
     const positionId = await createPosition(admin.actor, electionId, { title, maxSelections: "1", allowAbstain: "on" });
     for (const fullName of names) {
-      await createCandidate(admin.actor, electionId, { positionId, fullName, biography: `${fullName} biography.` }, { approve: true });
+      await createCandidate(
+        admin.actor,
+        electionId,
+        { positionId, fullName, biography: `${fullName} biography.` },
+        { approve: true, ...(fullName === "Kwame Mensah" ? { photo } : {}) },
+      );
     }
   }
   await addAllEligibleToRoll(admin.actor, electionId);

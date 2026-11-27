@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "Voting guidelines" };
 
 const STEPS = [
   ["Check your email", "After your membership is approved you receive an email with your login email and a temporary password. Check your spam folder if you cannot find it."],
-  ["Sign in and choose your password", "Sign in with the temporary password. You will be asked to choose your own password (at least 10 characters). Never share it — election officials will never ask for it."],
+  ["Sign in and choose your password", "Sign in with the temporary password. You will be asked to choose your own password (at least 10 characters). Never share it. Election officials will never ask for it."],
   ["Read about the candidates", "Open the election from your dashboard to read each candidate's biography and manifesto."],
   ["Vote while voting is open", "During the official voting period, select “Go to the ballot”. Choose one candidate for each position (or abstain where allowed)."],
   ["Review and confirm", "Review your choices, then confirm. Once submitted your ballot cannot be changed."],

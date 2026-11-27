@@ -39,17 +39,17 @@ const timeFormatter = new Intl.DateTimeFormat("en-GB", {
 });
 
 /** e.g. "Sat, 6 Dec 2026, 09:00 GMT" */
-export function formatDateTime(value: DateInput, fallback = "—"): string {
+export function formatDateTime(value: DateInput, fallback = "Not set"): string {
   const date = toDate(value);
   return date ? `${dateTimeFormatter.format(date)} GMT` : fallback;
 }
 
-export function formatDate(value: DateInput, fallback = "—"): string {
+export function formatDate(value: DateInput, fallback = "Not set"): string {
   const date = toDate(value);
   return date ? dateFormatter.format(date) : fallback;
 }
 
-export function formatTime(value: DateInput, fallback = "—"): string {
+export function formatTime(value: DateInput, fallback = "Not set"): string {
   const date = toDate(value);
   return date ? `${timeFormatter.format(date)} GMT` : fallback;
 }

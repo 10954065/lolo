@@ -36,7 +36,7 @@ function resultsCsv(s: ResultsSnapshot): string {
 }
 
 async function resultsPdf(s: ResultsSnapshot, label: string): Promise<Uint8Array> {
-  return buildPdfReport(`Results - ${s.electionTitle}`, `${label}. Voting ${formatDateTime(s.opensAt)} to ${formatDateTime(s.closesAt)}.`, [
+  return buildPdfReport(`Results: ${s.electionTitle}`, `${label}. Voting ${formatDateTime(s.opensAt)} to ${formatDateTime(s.closesAt)}.`, [
     {
       heading: "Summary",
       paragraphs: [
@@ -45,7 +45,7 @@ async function resultsPdf(s: ResultsSnapshot, label: string): Promise<Uint8Array
       ],
     },
     ...s.positions.map((p) => ({
-      heading: p.title + (p.hasTie ? " (TIE - not automatically resolved)" : ""),
+      heading: p.title + (p.hasTie ? " (TIE, not automatically resolved)" : ""),
       table: {
         headers: ["Candidate", "Votes", "%", "Outcome"],
         widths: [5, 1.2, 1.2, 1.6],
@@ -81,7 +81,7 @@ export async function GET(_request: Request, ctx: RouteContext<"/api/exports/ele
       if (session && can({ role: session.user.role }, "results.read.unpublished") && (TALLY_STATUSES as readonly string[]).includes(election.status)) {
         const published = await publishedSnapshot(id);
         snapshot = published?.snapshot ?? (await computeResults(getDb(), election));
-        label = published ? `Official results published ${formatDateTime(published.publishedAt)}` : "PROVISIONAL - NOT PUBLISHED";
+        label = published ? `Official results published ${formatDateTime(published.publishedAt)}` : "PROVISIONAL, NOT PUBLISHED";
       } else {
         const published = await publishedSnapshot(id);
         if (!published || !(await canViewPublishedResults(session, election))) throw forbidden("Results are not available.");
@@ -130,7 +130,7 @@ export async function GET(_request: Request, ctx: RouteContext<"/api/exports/ele
         ),
       );
     }
-    const pdf = await buildPdfReport(`Voter participation - ${election.title}`, `${voted} of ${roll.length} eligible members voted. Shows who voted and when - never how.`, [
+    const pdf = await buildPdfReport(`Voter participation: ${election.title}`, `${voted} of ${roll.length} eligible members voted. Shows who voted and when, never how.`, [
       {
         table: {
           headers: ["Member", "Membership no.", "Voted at (GMT)"],

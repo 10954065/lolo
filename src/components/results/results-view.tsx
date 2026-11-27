@@ -23,7 +23,7 @@ export function ResultsView({ snapshot, resolutions, isProvisional, publishedAt,
     <div className="space-y-6">
       {isProvisional ? (
         <p className="flex items-center gap-2 rounded-lg border border-warning/40 bg-warning-soft p-3 text-sm font-medium text-warning" role="status">
-          <AlertTriangle className="size-4" aria-hidden /> PROVISIONAL — not published. Visible to the System Administrator only.
+          <AlertTriangle className="size-4" aria-hidden /> PROVISIONAL: not published. Visible to the System Administrator only.
         </p>
       ) : publishedAt ? (
         <p className="flex flex-wrap items-center gap-2 rounded-lg border border-success/40 bg-success-soft p-3 text-sm text-success">

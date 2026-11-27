@@ -45,11 +45,11 @@ export default async function ProfilePage() {
               </div>
               <div>
                 <dt className="text-muted-foreground">Phone</dt>
-                <dd className="font-medium">{m?.phone ?? "—"}</dd>
+                <dd className="font-medium">{m?.phone ?? "Not provided"}</dd>
               </div>
               <div>
                 <dt className="text-muted-foreground">Membership number</dt>
-                <dd className="font-medium">{m?.membershipNumber ?? "—"}</dd>
+                <dd className="font-medium">{m?.membershipNumber ?? "Not provided"}</dd>
               </div>
               <div>
                 <dt className="text-muted-foreground">Status</dt>
@@ -68,7 +68,7 @@ export default async function ProfilePage() {
         <Card>
           <CardHeader>
             <CardTitle>Security</CardTitle>
-            <CardDescription>Password last changed {formatDateTime(row?.passwordChangedAt, "—")}.</CardDescription>
+            <CardDescription>Password last changed: {formatDateTime(row?.passwordChangedAt, "not yet")}.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
             <Button variant="outline" asChild>

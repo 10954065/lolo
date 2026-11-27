@@ -54,7 +54,7 @@ export default async function VoterHomePage() {
                       </div>
                       <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
                         <CalendarClock className="size-4" aria-hidden />
-                        {formatDateTime(e.opensAt)} – {formatDateTime(e.closesAt)}
+                        {formatDateTime(e.opensAt)} to {formatDateTime(e.closesAt)}
                       </p>
                       {votedAt ? (
                         <p className="flex items-center gap-1.5 text-sm font-medium text-success">
@@ -115,7 +115,7 @@ export default async function VoterHomePage() {
             <CardContent className="flex items-start gap-3 py-4 text-sm">
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-success" aria-hidden />
               <p>
-                Your vote is secret. Nobody — including the administrators — can see how you voted.{" "}
+                Your vote is secret. Nobody, including the administrators, can see how you voted.{" "}
                 <Link href="/guidelines" className="font-medium text-brand hover:underline">
                   Voting guidelines
                 </Link>

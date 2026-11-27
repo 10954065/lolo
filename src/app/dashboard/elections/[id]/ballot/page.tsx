@@ -30,8 +30,8 @@ export default async function BallotPage({ params }: PageProps<"/dashboard/elect
       <div className="mx-auto max-w-3xl space-y-6">
         <p className="flex items-start gap-2 rounded-lg border bg-card p-3 text-sm text-muted-foreground">
           <ShieldCheck className="mt-0.5 size-4 shrink-0 text-success" aria-hidden />
-          Your vote is secret. Your choices are stored separately from your name, and nobody — including the
-          administrators — can see how you voted.
+          Your vote is secret. Your choices are stored separately from your name, and nobody, including the
+          administrators, can see how you voted.
         </p>
         {view.election.instructions ? <PlainText text={view.election.instructions} className="text-sm" /> : null}
         <BallotForm
