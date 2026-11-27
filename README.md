@@ -17,6 +17,11 @@ administrators — can see how an individual member voted.
 | [SECURITY.md](SECURITY.md) | Threat model, controls, known limitations |
 | [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) | Phases, risks, decisions for MOBA 2017 |
 | [TESTING.md](TESTING.md) | How to run the test suites and what they prove |
+| [API_DOCUMENTATION.md](API_DOCUMENTATION.md) | Route handlers, Server Actions, DB functions, rate limits |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | Vercel + Neon + Resend production setup, backups, recovery |
+| [ADMIN_GUIDE.md](ADMIN_GUIDE.md) | Running elections as System Administrator |
+| [COMMITTEE_GUIDE.md](COMMITTEE_GUIDE.md) | Observing and verifying as Electoral Committee |
+| [VOTER_GUIDE.md](VOTER_GUIDE.md) | How members sign in and vote |
 
 ## Tech stack
 
@@ -82,3 +87,13 @@ This file transport is refused in production.
   help, public results) and completed administrator/committee/voter dashboards: complete
 * Phase 9 — testing and security review (Playwright acceptance suite, independent ballot-path security
   review with fixes): complete
+* Phase 10 — deployment readiness (Vercel crons, deployment/backup/recovery guide, API documentation and
+  role guides): complete
+
+## Before the first live election
+
+1. MOBA 2017 confirms the open election decisions in [DEVELOPMENT_PLAN.md §4](DEVELOPMENT_PLAN.md).
+2. Place the official logo at `public/brand/moba-logo.png`.
+3. Follow [DEPLOYMENT.md](DEPLOYMENT.md), including the pre-election checklist.
+4. Recommended follow-ups: multi-factor authentication for staff accounts; raise automated test coverage
+   (currently 60 % of server lines, see TESTING.md).
