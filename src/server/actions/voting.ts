@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import type { ActionState } from "@/lib/action-state";
 import { formatDateTime } from "@/lib/datetime";
 import { requirePermissionAction } from "@/server/auth/guards";
@@ -20,8 +19,8 @@ export async function castBallotAction(electionId: string, _prev: ActionState, f
     if (!session.user.memberId) throw forbidden("Only members can vote.");
     const result = await castBallot(actor, session.user.memberId, electionId, selectionsFromFormData(formData));
     dispatchEmailsLater();
-    revalidatePath("/dashboard");
-    revalidatePath(`/dashboard/elections/${electionId}`);
+    // Deliberately no revalidatePath: it would re-render (and redirect) the ballot page before
+    // the voter has seen the one-time receipt. Voter pages are fully dynamic anyway.
     return {
       ok: true,
       message: "Your ballot has been recorded.",

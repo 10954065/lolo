@@ -80,3 +80,5 @@ This file transport is refused in production.
   snapshot, visibility rules) and reporting (CSV/PDF results, participation, candidates, members, audit): complete
 * Phase 8 — public pages (landing, about, election information, candidate directory, voting guidelines,
   help, public results) and completed administrator/committee/voter dashboards: complete
+* Phase 9 — testing and security review (Playwright acceptance suite, independent ballot-path security
+  review with fixes): complete

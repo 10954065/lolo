@@ -86,3 +86,40 @@ run in production, not as a superuser.
 | 2026-11-26 | 5 | 12 files, 185 tests passed. Typecheck, lint and build clean. |
 | 2026-11-27 | 6 | 15 files, 220 tests passed (incl. security-review regression tests). Typecheck, lint and build clean. Independent security review of the ballot path: no critical findings; H1, H2, M1, M2, L1, L3, L4 fixed. |
 | 2026-11-27 | 7 | 18 files, 230 tests passed. Typecheck, lint and build clean. |
+| 2026-11-27 | 9 | 230 unit/integration tests passed; 9 Playwright E2E tests passed (desktop + mobile) against a production build. E2E found and fixed a real defect: the one-time receipt was lost because the vote action revalidated the ballot page. |
+
+## End-to-end tests (Playwright)
+
+`npm run test:e2e` builds the app, recreates a dedicated `moba_election_e2e` database (migrated and
+hardened), seeds it with random per-run passwords (`scripts/seed-e2e.ts`, refuses any database not named
+`*_e2e`) and drives a production server with Chromium (desktop and Pixel 7).
+
+## Acceptance criteria (project brief §16) → evidence
+
+| # | Criterion | Evidence |
+|---|---|---|
+| 1 | Unapproved member cannot vote | E2E `1:`; `voting.test.ts` eligibility |
+| 2 | Approved member can log in | E2E `2 + 3:`; `onboarding.test.ts` |
+| 3 | Temporary credentials require a password change | E2E `2 + 3:`; `onboarding.test.ts` |
+| 4 | No voting before opening | `voting.test.ts` window; `election-rules.test.ts` |
+| 5 | Eligible members can vote while open | E2E `5 + 6 + 8:`, mobile spec |
+| 6 | No second ballot | E2E `5 + 6 + 8:`; `voting.test.ts` |
+| 7 | Concurrent submissions → one ballot | `voting.test.ts` (10 concurrent submissions) |
+| 8 | Ballot cannot be changed | E2E `5 + 6 + 8:`; append-only participation (`db-security.test.ts`) |
+| 9 | Administrators cannot identify ballot choices | `db-security.test.ts` (no SELECT on ballots); E2E `9 + 13:`; `ballot-isolation.test.ts` |
+| 10 | Committee cannot identify ballot choices | same DB boundary; `permissions.test.ts`; `results.test.ts` |
+| 11 | Committee cannot perform administrative operations | `roles.test.ts`, `elections.test.ts`; E2E `11 + 12:` |
+| 12 | Direct API attempts by the committee rejected | E2E `11 + 12:` (direct requests → 403); `action-guards.test.ts` |
+| 13 | Results hidden until publication | `results.test.ts`; E2E `9 + 13:`; DB tally guard |
+| 14 | Vote counts and turnout accurate | `results.test.ts` (exact counts and percentages) |
+| 15 | Closure prevents new submissions | `voting.test.ts` (close, close race) |
+| 16 | Unauthorized users cannot access protected dashboards | E2E `16:` (two tests) |
+| 17 | Failed transactions leave no partial ballot | `voting.test.ts` atomicity |
+| 18 | Reports/exports never link voters to choices | `results.test.ts` participation columns; `ballot-isolation.test.ts` |
+
+## Coverage
+
+`npm run test:coverage` (2026-11-27): statements 57.3 %, lines 60.4 % across `src/server` and `src/lib`.
+This is **below the 80 % target**. Most uncovered code is request-bound (cookie/header helpers, route
+handlers and Server Actions — exercised by the E2E suite, which coverage does not count), the Resend webhook
+handler and announcements. Raising unit/integration coverage of these modules is an open item.
