@@ -21,7 +21,7 @@ export default async function PublicResultsPage({ params }: PageProps<"/results/
       <Link href="/">
         <BrandLogo />
       </Link>
-      <h1 className="text-3xl font-semibold text-navy">Results: {election.title}</h1>
+      <h1 className="text-3xl font-semibold text-ink">Results: {election.title}</h1>
       <ResultsView
         snapshot={published.snapshot}
         resolutions={await listTieResolutions(id)}

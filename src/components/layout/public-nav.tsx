@@ -12,7 +12,7 @@ import { PUBLIC_LINKS } from "./public-links";
 
 const isCurrent = (pathname: string, href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
-/** Inline links on desktops; a navy side panel on phones and tablets. */
+/** Inline links on desktops; a ink side panel on phones and tablets. */
 export function PublicNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ export function PublicNav() {
             aria-current={isCurrent(pathname, l.href) ? "page" : undefined}
             className={cn(
               "rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
-              isCurrent(pathname, l.href) ? "bg-brand-soft text-brand" : "text-muted-foreground hover:bg-secondary hover:text-navy",
+              isCurrent(pathname, l.href) ? "bg-white text-brand" : "text-white/85 hover:bg-white/10 hover:text-white",
             )}
           >
             {l.label}
@@ -38,7 +38,7 @@ export function PublicNav() {
 
       <Button
         variant="outline"
-        className="h-10 gap-2 rounded-full px-3.5 lg:hidden"
+        className="h-10 gap-2 rounded-full border-transparent px-3.5 text-brand shadow-none lg:hidden"
         aria-label="Open menu"
         onClick={() => setIsOpen(true)}
       >
@@ -50,13 +50,13 @@ export function PublicNav() {
         <SheetContent
           side="left"
           showCloseButton={false}
-          className="w-[88vw] max-w-sm gap-0 border-0 bg-linear-to-b from-sidebar to-navy-deep p-0 text-sidebar-foreground"
+          className="w-[88vw] max-w-sm gap-0 border-0 bg-linear-to-b from-sidebar to-brand-deep p-0 text-sidebar-foreground"
         >
           <SheetHeader className="sr-only">
             <SheetTitle>Menu</SheetTitle>
             <SheetDescription>Public pages of the MOBA 2017 election platform.</SheetDescription>
           </SheetHeader>
-          <div className="h-1 bg-linear-to-r from-brand via-brand to-gold" aria-hidden />
+          <div className="h-1 bg-ink" aria-hidden />
           <div className="flex items-center justify-between px-5 pb-4 pt-5">
             <Link href="/" onClick={close} className="flex items-center gap-3">
               <BrandLogo isInverted />
@@ -75,7 +75,7 @@ export function PublicNav() {
             </button>
           </div>
 
-          <p className="px-6 pb-2 pt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold/80">Explore</p>
+          <p className="px-6 pb-2 pt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">Explore</p>
           <nav aria-label="Main" className="flex-1 space-y-1 overflow-y-auto px-3">
             {PUBLIC_LINKS.map((l) => {
               const isActive = isCurrent(pathname, l.href);
@@ -88,14 +88,14 @@ export function PublicNav() {
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "group relative flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors",
-                    isActive ? "bg-white/10 shadow-[inset_0_0_0_1px_oklch(1_0_0/8%)]" : "hover:bg-white/5",
+                    isActive ? "bg-white/15 shadow-[inset_0_0_0_1px_oklch(1_0_0/12%)]" : "hover:bg-white/10",
                   )}
                 >
-                  {isActive ? <span className="absolute inset-y-2.5 left-0 w-1 rounded-r-full bg-brand" aria-hidden /> : null}
+                  {isActive ? <span className="absolute inset-y-2.5 left-0 w-1 rounded-r-full bg-white" aria-hidden /> : null}
                   <span
                     className={cn(
                       "flex size-10 shrink-0 items-center justify-center rounded-lg",
-                      isActive ? "bg-brand text-white" : "bg-white/5 text-gold",
+                      isActive ? "bg-white text-brand" : "bg-white/10 text-white",
                     )}
                   >
                     <Icon className="size-[18px]" aria-hidden />
@@ -111,14 +111,17 @@ export function PublicNav() {
           </nav>
 
           <div className="space-y-3 border-t border-white/10 p-4 pb-safe">
-            <Button asChild size="lg" className="w-full">
+            <Button asChild size="lg" className="w-full bg-white text-brand shadow-lift hover:bg-white/90">
               <Link href="/login" onClick={close}>
                 <LogIn className="size-4" aria-hidden /> Member sign in
               </Link>
             </Button>
             <p className="flex items-start gap-2 px-1 text-[11px] leading-snug text-sidebar-foreground/55">
-              <ShieldCheck className="mt-px size-3.5 shrink-0 text-gold/70" aria-hidden />
+              <ShieldCheck className="mt-px size-3.5 shrink-0 text-white/70" aria-hidden />
               Your vote is secret. No one can see how any member voted.
+            </p>
+            <p className="px-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70">
+              Dwen Hwɛ Kan <span className="font-normal normal-case tracking-normal text-white/50">· Think and look ahead</span>
             </p>
           </div>
         </SheetContent>

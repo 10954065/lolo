@@ -27,8 +27,8 @@ export function ElectionTabs({ basePath, tabs }: { basePath: string; tabs: Array
                 "whitespace-nowrap text-sm font-medium transition-colors",
                 "rounded-full border px-4 py-2 sm:-mb-px sm:rounded-none sm:border-0 sm:border-b-2 sm:px-3",
                 isActive
-                  ? "border-navy bg-navy text-white sm:border-brand sm:bg-transparent sm:text-brand"
-                  : "border-border bg-card text-muted-foreground hover:text-navy sm:border-transparent sm:bg-transparent",
+                  ? "border-ink bg-ink text-white sm:border-brand sm:bg-transparent sm:text-brand"
+                  : "border-border bg-card text-muted-foreground hover:text-ink sm:border-transparent sm:bg-transparent",
               )}
             >
               {t.label}

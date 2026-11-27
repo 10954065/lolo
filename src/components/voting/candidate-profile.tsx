@@ -13,7 +13,7 @@ export function CandidateProfile({ candidate: c, positionTitle }: CandidateProfi
       <CandidatePhoto candidateId={c.id} name={c.fullName} hasPhoto={c.hasPhoto} version={c.photoVersion} size="md" />
       <div className="min-w-0 flex-1 space-y-2">
         <div>
-          <h3 className="font-semibold text-navy">{c.fullName}</h3>
+          <h3 className="font-semibold text-ink">{c.fullName}</h3>
           {positionTitle ? <p className="text-xs text-muted-foreground">Candidate for {positionTitle}</p> : null}
         </div>
         {c.biography ? <PlainText text={c.biography} className="text-sm text-muted-foreground" /> : null}

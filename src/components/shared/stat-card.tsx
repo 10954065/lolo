@@ -13,7 +13,7 @@ type StatCardProps = {
 };
 
 const ICON_TONE: Record<NonNullable<StatCardProps["tone"]>, string> = {
-  default: "bg-secondary text-navy",
+  default: "bg-secondary text-ink",
   brand: "bg-brand-soft text-brand",
   success: "bg-success-soft text-success",
   warning: "bg-warning-soft text-warning",
@@ -25,7 +25,7 @@ const EDGE_TONE: Record<NonNullable<StatCardProps["tone"]>, string> = {
   default: "before:bg-transparent",
   brand: "before:bg-brand",
   success: "before:bg-success/70",
-  warning: "before:bg-gold",
+  warning: "before:bg-warning",
   danger: "before:bg-destructive",
 };
 
@@ -48,7 +48,7 @@ export function StatCard({ label, value, icon: Icon, hint, href, tone = "default
         ) : null}
       </div>
       <div className="mt-auto flex items-end justify-between gap-2">
-        <p className="text-2xl font-semibold tabular-nums tracking-tight text-navy sm:text-3xl">{value}</p>
+        <p className="text-2xl font-semibold tabular-nums tracking-tight text-ink sm:text-3xl">{value}</p>
         {href ? (
           <ChevronRight className="mb-1 size-4 text-muted-foreground transition-transform group-hover/stat:translate-x-0.5" aria-hidden />
         ) : null}

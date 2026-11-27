@@ -26,8 +26,8 @@ function Hero() {
     <section className="bg-crest text-white" aria-labelledby="hero-title">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 pb-12 pt-10 sm:px-6 sm:pb-16 sm:pt-14 lg:grid-cols-[1.35fr_1fr] lg:pb-20 lg:pt-20">
         <div className="space-y-6">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
-            <span className="size-1.5 rounded-full bg-gold" aria-hidden /> Official election platform
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+            <span className="size-1.5 rounded-full bg-white" aria-hidden /> Official election platform
           </p>
           <h1 id="hero-title" className="text-[2.15rem] font-bold leading-[1.1] sm:text-5xl lg:text-[3.4rem]">
             Your voice in the MOBA 2017 executive elections
@@ -37,7 +37,7 @@ function Hero() {
             a few minutes.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="h-12 w-full text-base sm:w-auto">
+            <Button asChild size="lg" className="h-12 w-full bg-white text-base text-brand shadow-lift hover:bg-white/90 sm:w-auto">
               <Link href="/login">
                 Sign in to vote <ArrowRight className="size-4" aria-hidden />
               </Link>
@@ -54,17 +54,17 @@ function Hero() {
           <ul className="flex flex-wrap gap-x-5 gap-y-2 pt-1 text-sm text-white/75">
             {PROMISES.map((p) => (
               <li key={p.text} className="flex items-center gap-2">
-                <p.icon className="size-4 text-gold" aria-hidden /> {p.text}
+                <p.icon className="size-4 text-white" aria-hidden /> {p.text}
               </li>
             ))}
           </ul>
         </div>
         <div className="relative hidden lg:block" aria-hidden>
-          <div className="absolute -inset-6 rounded-[2rem] bg-linear-to-br from-brand/30 to-gold/10 blur-2xl" />
+          <div className="absolute -inset-6 rounded-[2rem] bg-linear-to-br from-black/35 to-white/10 blur-2xl" />
           <div className="relative flex flex-col items-center gap-5 rounded-3xl border border-white/10 bg-white p-10 text-center shadow-lift">
             <BrandLogo variant="full" />
-            <div className="h-px w-24 bg-linear-to-r from-transparent via-gold to-transparent" />
-            <p className="text-sm font-medium text-navy">2017 Year Group · Executive Elections</p>
+            <div className="h-px w-24 bg-linear-to-r from-transparent via-brand to-transparent" />
+            <p className="text-sm font-medium text-ink">2017 Year Group · Executive Elections</p>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default async function HomePage() {
       {elections.length ? (
         <section className="space-y-4" aria-labelledby="current">
           <div className="flex items-end justify-between gap-4">
-            <h2 id="current" className="text-2xl font-semibold text-navy sm:text-3xl">
+            <h2 id="current" className="text-2xl font-semibold text-ink sm:text-3xl">
               Elections
             </h2>
             <Link href="/elections" className="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline">
@@ -95,7 +95,7 @@ export default async function HomePage() {
                   className="group flex h-full flex-col gap-3 rounded-xl border bg-card p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lift"
                 >
                   <StatusBadge status={effectiveStatus(e, now)} />
-                  <p className="text-lg font-semibold leading-snug text-navy">{e.title}</p>
+                  <p className="text-lg font-semibold leading-snug text-ink">{e.title}</p>
                   <p className="mt-auto flex items-center gap-1.5 text-sm text-muted-foreground">
                     <CalendarClock className="size-4 shrink-0" aria-hidden /> Opens {formatDateTime(e.opensAt)}
                   </p>
@@ -109,7 +109,7 @@ export default async function HomePage() {
       <section className={elections.length ? "mt-12 space-y-5 sm:mt-16" : "space-y-5"} aria-labelledby="steps">
         <div className="space-y-1">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">Four simple steps</p>
-          <h2 id="steps" className="text-2xl font-semibold text-navy sm:text-3xl">
+          <h2 id="steps" className="text-2xl font-semibold text-ink sm:text-3xl">
             How it works
           </h2>
         </div>
@@ -126,7 +126,7 @@ export default async function HomePage() {
                 <s.icon className="size-5" aria-hidden />
               </span>
               <div className="relative">
-                <p className="font-semibold text-navy">
+                <p className="font-semibold text-ink">
                   <span className="sr-only">Step {i + 1}: </span>
                   {s.title}
                 </p>
@@ -144,7 +144,7 @@ export default async function HomePage() {
               <ShieldCheck className="size-6" aria-hidden />
             </span>
             <div className="space-y-1">
-              <h2 className="text-xl font-semibold text-navy">Your vote is secret</h2>
+              <h2 className="text-xl font-semibold text-ink">Your vote is secret</h2>
               <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
                 Ballots are stored separately from member records, and nobody, including administrators, can see how you voted.
                 After voting you can check your receipt at any time.

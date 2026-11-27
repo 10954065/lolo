@@ -93,7 +93,7 @@ export function ResultsView({ snapshot, resolutions, isProvisional, publishedAt,
                     </div>
                     <div className="mt-1 h-2.5 rounded-full bg-muted" aria-hidden>
                       <div
-                        className={`h-2.5 rounded-full ${c.isWinner ? "bg-success" : c.isTied ? "bg-warning" : "bg-navy/60"}`}
+                        className={`h-2.5 rounded-full ${c.isWinner ? "bg-success" : c.isTied ? "bg-warning" : "bg-ink/60"}`}
                         style={{ width: `${(c.votes / maxVotes) * 100}%` }}
                       />
                     </div>
@@ -113,7 +113,7 @@ export function ResultsView({ snapshot, resolutions, isProvisional, publishedAt,
                   </p>
                   <p className="mt-1 text-muted-foreground">Procedure: {snapshot.tieBreakProcedure}</p>
                   {resolution ? (
-                    <p className="mt-2 font-medium text-navy">
+                    <p className="mt-2 font-medium text-ink">
                       Tie-break outcome recorded {formatDateTime(resolution.resolution.recordedAt)}: {resolution.candidateName} ({resolution.resolution.method})
                     </p>
                   ) : null}

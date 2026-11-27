@@ -15,7 +15,7 @@ export default async function ResetPasswordPage({ searchParams }: PageProps<"/re
   return (
     <Card className="shadow-sm">
       <CardHeader>
-        <CardTitle className="text-2xl text-navy">Choose a new password</CardTitle>
+        <CardTitle className="text-2xl text-ink">Choose a new password</CardTitle>
         <CardDescription>
           Use at least 10 characters. A short sentence is easy to remember and hard to guess.
         </CardDescription>

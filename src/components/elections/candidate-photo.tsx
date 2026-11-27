@@ -48,7 +48,7 @@ export function CandidatePhoto({ candidateId, name, hasPhoto, version, size = "m
     <span
       role="img"
       aria-label={`${name} (no photograph)`}
-      className={cn("flex shrink-0 items-center justify-center rounded-full border bg-secondary font-semibold text-navy", SIZES[size], className)}
+      className={cn("flex shrink-0 items-center justify-center rounded-full border bg-secondary font-semibold text-ink", SIZES[size], className)}
     >
       {initials(name)}
     </span>

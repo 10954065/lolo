@@ -95,7 +95,7 @@ export default async function ImportPage({ searchParams }: PageProps<"/admin/mem
                       <TableCell>
                         <Link
                           href={`/admin/members/import/${i.id}`}
-                          className="font-medium text-navy hover:text-brand hover:underline"
+                          className="font-medium text-ink hover:text-brand hover:underline"
                         >
                           {i.fileName}
                         </Link>

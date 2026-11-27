@@ -97,7 +97,7 @@ export default async function CredentialsPage() {
       </Card>
 
       <section className="mt-6 space-y-3">
-        <h2 className="text-lg font-semibold text-navy">Failed credential emails</h2>
+        <h2 className="text-lg font-semibold text-ink">Failed credential emails</h2>
         <p className="text-sm text-muted-foreground">
           “Retry” re-sends the same credentials once the problem is fixed (for example a corrected email address). To issue
           a new password, open the member and choose “Generate new credentials”.

@@ -61,7 +61,7 @@ export default async function PositionsPage({ params }: PageProps<"/admin/electi
               <Card>
                 <CardContent className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="min-w-0">
-                    <p className="font-semibold text-navy">
+                    <p className="font-semibold text-ink">
                       {index + 1}. {p.title}
                     </p>
                     {p.description ? <p className="text-sm text-muted-foreground">{p.description}</p> : null}

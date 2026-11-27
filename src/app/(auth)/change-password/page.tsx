@@ -15,7 +15,7 @@ export default async function ChangePasswordPage() {
   return (
     <Card className="shadow-sm">
       <CardHeader>
-        <CardTitle className="text-2xl text-navy">{isForced ? "Choose your own password" : "Change password"}</CardTitle>
+        <CardTitle className="text-2xl text-ink">{isForced ? "Choose your own password" : "Change password"}</CardTitle>
         <CardDescription>Signed in as {session.user.email}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">

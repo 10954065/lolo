@@ -14,11 +14,11 @@ export function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed bg-card px-6 py-12 text-center">
-      <span className="flex size-12 items-center justify-center rounded-full bg-secondary text-navy">
+      <span className="flex size-12 items-center justify-center rounded-full bg-secondary text-ink">
         <Icon className="size-6" aria-hidden />
       </span>
       <div className="space-y-1">
-        <p className="font-medium text-navy">{title}</p>
+        <p className="font-medium text-ink">{title}</p>
         {description ? <p className="max-w-md text-sm text-muted-foreground">{description}</p> : null}
       </div>
       {action}

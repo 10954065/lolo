@@ -16,27 +16,27 @@ export default function GuidelinesPage() {
   return (
     <PublicShell>
       <article className="max-w-3xl space-y-6">
-        <h1 className="text-3xl font-bold text-navy">Voting guidelines</h1>
+        <h1 className="text-3xl font-bold text-ink">Voting guidelines</h1>
         <ol className="space-y-4">
           {STEPS.map(([title, text], i) => (
             <li key={title} className="flex gap-4 rounded-xl border bg-card p-4">
               <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">{i + 1}</span>
               <div>
-                <h2 className="font-semibold text-navy">{title}</h2>
+                <h2 className="font-semibold text-ink">{title}</h2>
                 <p className="text-sm text-muted-foreground">{text}</p>
               </div>
             </li>
           ))}
         </ol>
         <section className="space-y-2 rounded-xl border bg-card p-5">
-          <h2 className="font-semibold text-navy">Your vote is secret</h2>
+          <h2 className="font-semibold text-ink">Your vote is secret</h2>
           <p className="text-sm text-muted-foreground">
             The platform records <em>that</em> you voted separately from <em>what</em> you chose. Ballots carry no name, email or
             time. Administrators and the Electoral Committee can see who has voted, but nobody can see how anyone voted.
           </p>
         </section>
         <section className="space-y-2 rounded-xl border bg-card p-5">
-          <h2 className="font-semibold text-navy">Good practice</h2>
+          <h2 className="font-semibold text-ink">Good practice</h2>
           <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
             <li>Vote in private, on your own device.</li>
             <li>Do not let anyone else sign in with your account or vote for you.</li>

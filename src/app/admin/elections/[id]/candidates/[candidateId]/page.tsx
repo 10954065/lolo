@@ -54,11 +54,11 @@ export default async function CandidatePage({ params }: PageProps<"/admin/electi
           {isLocked ? (
             <div className="space-y-4 text-sm">
               <div>
-                <h3 className="font-semibold text-navy">Biography</h3>
+                <h3 className="font-semibold text-ink">Biography</h3>
                 <PlainText text={c.biography || "Not provided."} className="text-muted-foreground" />
               </div>
               <div>
-                <h3 className="font-semibold text-navy">Manifesto</h3>
+                <h3 className="font-semibold text-ink">Manifesto</h3>
                 <PlainText text={c.manifesto || "Not provided."} className="text-muted-foreground" />
               </div>
             </div>

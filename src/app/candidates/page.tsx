@@ -10,7 +10,7 @@ export default async function CandidateDirectoryPage() {
   const elections = [...new Map(rows.map((r) => [r.electionId, r.electionTitle])).entries()];
   return (
     <PublicShell>
-      <h1 className="text-3xl font-bold text-navy">Candidate directory</h1>
+      <h1 className="text-3xl font-bold text-ink">Candidate directory</h1>
       <p className="mt-2 text-muted-foreground">
         Approved candidates appear here once an election&apos;s ballot is final. Every candidate is presented the same way.
       </p>
@@ -24,7 +24,7 @@ export default async function CandidateDirectoryPage() {
           const positions = [...new Set(inElection.map((r) => r.positionTitle))];
           return (
             <section key={electionId} className="mt-10 space-y-6">
-              <h2 className="text-2xl font-semibold text-navy">{title}</h2>
+              <h2 className="text-2xl font-semibold text-ink">{title}</h2>
               {positions.map((p) => (
                 <div key={p} className="space-y-3">
                   <h3 className="font-semibold text-brand">{p}</h3>

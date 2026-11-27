@@ -16,13 +16,13 @@ type PublicShellProps = {
 export function PublicShell({ children, hero }: PublicShellProps) {
   return (
     <div className="flex min-h-dvh flex-1 flex-col">
-      <header className="sticky top-0 z-30 border-b bg-background/85 backdrop-blur-md">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-brand text-white shadow-[0_8px_24px_-16px_oklch(0.16_0.01_25/60%)]">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center gap-3 px-4 sm:px-6">
           <Link href="/" aria-label="MOBA 2017 Elections home" className="mr-auto">
-            <BrandLockup />
+            <BrandLockup isInverted />
           </Link>
           <PublicNav />
-          <Button asChild className="hidden sm:inline-flex">
+          <Button asChild className="hidden bg-white text-brand shadow-none hover:bg-white/90 sm:inline-flex">
             <Link href="/login">Member sign in</Link>
           </Button>
         </div>
@@ -31,16 +31,19 @@ export function PublicShell({ children, hero }: PublicShellProps) {
       <main id="main-content" className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-12">
         {children}
       </main>
-      <footer className="bg-crest text-white/80">
-        <div className="h-1 bg-linear-to-r from-brand via-brand to-gold" aria-hidden />
+      <footer className="bg-ink-deep text-white/75">
+        <div className="h-1.5 bg-brand" aria-hidden />
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 sm:grid-cols-[1.4fr_1fr] sm:px-6">
           <div className="space-y-3">
             <p className="font-[family-name:var(--font-display)] text-2xl font-semibold text-white">MOBA 2017</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-bright">
+              Dwen Hwɛ Kan <span className="font-normal normal-case tracking-normal text-white/60">· Think and look ahead</span>
+            </p>
             <p className="max-w-sm text-sm leading-relaxed">
               The official election platform of the 2017 year group of the Mfantsipim Old Boys Association.
             </p>
             <p className="flex items-center gap-2 text-sm text-white/70">
-              <ShieldCheck className="size-4 text-gold" aria-hidden /> Secret ballot. One member, one vote.
+              <ShieldCheck className="size-4 text-brand-bright" aria-hidden /> Secret ballot. One member, one vote.
             </p>
           </div>
           <nav aria-label="Footer" className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">

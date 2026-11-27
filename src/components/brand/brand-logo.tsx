@@ -34,7 +34,7 @@ function Wordmark({ className, variant, isInverted }: Required<Omit<BrandLogoPro
         MOBA
       </span>
       {variant === "full" ? (
-        <span className={cn("mt-1 text-sm font-medium", isInverted ? "text-white/80" : "text-navy")}>
+        <span className={cn("mt-1 text-sm font-medium", isInverted ? "text-white/80" : "text-ink")}>
           Mfantsipim Old Boys Association
         </span>
       ) : null}
@@ -77,7 +77,7 @@ export function BrandLockup({ isInverted = false }: { isInverted?: boolean }) {
     <span className="inline-flex items-center gap-3">
       <BrandLogo isInverted={isInverted} />
       <span className="flex flex-col leading-tight">
-        <span className={cn("text-sm font-semibold", isInverted ? "text-white" : "text-navy")}>MOBA 2017</span>
+        <span className={cn("text-sm font-semibold", isInverted ? "text-white" : "text-ink")}>MOBA 2017</span>
         <span className={cn("text-xs", isInverted ? "text-white/70" : "text-muted-foreground")}>
           Election Management System
         </span>

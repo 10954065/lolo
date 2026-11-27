@@ -70,7 +70,7 @@ export default async function CommitteeElectionPage({ params, searchParams }: Pa
             {positions.length === 0 ? <p className="text-sm text-muted-foreground">No positions configured.</p> : null}
             {positions.map(({ position: p }) => (
               <section key={p.id} className="space-y-2">
-                <h3 className="flex flex-wrap items-center gap-2 font-semibold text-navy">
+                <h3 className="flex flex-wrap items-center gap-2 font-semibold text-ink">
                   {p.title}
                   <Badge variant="outline">{p.maxSelections} seat(s)</Badge>
                   <Badge variant="outline">Abstain {p.allowAbstain ? "allowed" : "not allowed"}</Badge>
@@ -100,7 +100,7 @@ export default async function CommitteeElectionPage({ params, searchParams }: Pa
           </CardContent>
         </Card>
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold text-navy">Voter roll and participation</h2>
+          <h2 className="text-lg font-semibold text-ink">Voter roll and participation</h2>
           <form method="get" action={basePath} className="flex flex-wrap items-end gap-2 rounded-xl border bg-card p-4">
             <div className="min-w-56 flex-1">
               <Input name="q" aria-label="Search the roll" defaultValue={filters.q ?? ""} placeholder="Search the roll" />

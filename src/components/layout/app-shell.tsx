@@ -49,7 +49,7 @@ function NavLinks({ area, onNavigate }: { area: ShellArea; onNavigate?: () => vo
       {NAV[area].map((section, i) => (
         <div key={section.title ?? i} className="space-y-1">
           {section.title ? (
-            <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold/80">{section.title}</p>
+            <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{section.title}</p>
           ) : null}
           {section.items.map((item) => {
             const isCurrent = isActive(pathname, item);
@@ -63,12 +63,12 @@ function NavLinks({ area, onNavigate }: { area: ShellArea; onNavigate?: () => vo
                 className={cn(
                   "group relative flex min-h-11 items-center gap-3 rounded-lg px-3 text-[0.95rem] font-medium transition-colors lg:min-h-10 lg:text-sm",
                   isCurrent
-                    ? "bg-white/10 text-white shadow-[inset_0_0_0_1px_oklch(1_0_0/8%)]"
-                    : "text-sidebar-foreground/75 hover:bg-white/5 hover:text-white",
+                    ? "bg-white/15 text-white shadow-[inset_0_0_0_1px_oklch(1_0_0/12%)]"
+                    : "text-sidebar-foreground/85 hover:bg-white/10 hover:text-white",
                 )}
               >
-                {isCurrent ? <span className="absolute inset-y-2 left-0 w-1 rounded-r-full bg-brand" aria-hidden /> : null}
-                <Icon className={cn("size-[18px] shrink-0", isCurrent ? "text-gold" : "text-sidebar-foreground/60")} aria-hidden />
+                {isCurrent ? <span className="absolute inset-y-2 left-0 w-1 rounded-r-full bg-white" aria-hidden /> : null}
+                <Icon className={cn("size-[18px] shrink-0", isCurrent ? "text-white" : "text-sidebar-foreground/70")} aria-hidden />
                 {item.label}
               </Link>
             );
@@ -93,8 +93,8 @@ function SidebarBody({
   onClose?: () => void;
 }) {
   return (
-    <div className="flex h-full flex-col bg-linear-to-b from-sidebar to-navy-deep text-sidebar-foreground">
-      <div className="h-1 bg-linear-to-r from-brand via-brand to-gold" aria-hidden />
+    <div className="flex h-full flex-col bg-linear-to-b from-sidebar to-brand-deep text-sidebar-foreground">
+      <div className="h-1 bg-ink" aria-hidden />
       <div className="flex items-center justify-between gap-2 px-5 pb-6 pt-6">
         <Link href={HOME[area]} className="flex items-center gap-3" onClick={onNavigate}>
           <BrandLogo isInverted />
@@ -116,7 +116,7 @@ function SidebarBody({
       </div>
       <div className="px-5 pb-5">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-sidebar-foreground/80">
-          <span className="size-1.5 rounded-full bg-gold" aria-hidden />
+          <span className="size-1.5 rounded-full bg-white" aria-hidden />
           {AREA_LABEL[area]}
         </span>
       </div>
@@ -124,8 +124,8 @@ function SidebarBody({
         <NavLinks area={area} onNavigate={onNavigate} />
       </div>
       <div className="space-y-3 border-t border-white/10 p-4 pb-safe">
-        <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
+        <div className="flex items-center gap-3 rounded-xl bg-black/15 p-3">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-semibold text-white">
             {initialsOf(userName)}
           </span>
           <span className="min-w-0 flex-1 leading-tight">
@@ -143,8 +143,11 @@ function SidebarBody({
           </form>
         </div>
         <p className="flex items-start gap-2 px-1 text-[11px] leading-snug text-sidebar-foreground/50">
-          <ShieldCheck className="mt-px size-3.5 shrink-0 text-gold/70" aria-hidden />
+          <ShieldCheck className="mt-px size-3.5 shrink-0 text-white/70" aria-hidden />
           Secret ballot protected. No one can see how any member voted.
+        </p>
+        <p className="px-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70">
+          Dwen Hwɛ Kan <span className="font-normal normal-case tracking-normal text-white/50">· Think and look ahead</span>
         </p>
       </div>
     </div>
@@ -161,7 +164,7 @@ function BottomTabs({ area, onMore }: { area: ShellArea; onMore: () => void }) {
   return (
     <nav
       aria-label="Quick navigation"
-      className="fixed inset-x-0 bottom-0 z-40 border-t bg-card/95 pb-safe shadow-[0_-8px_24px_-16px_oklch(0.24_0.05_262/35%)] backdrop-blur-md lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-brand pb-safe shadow-[0_-8px_24px_-12px_oklch(0.16_0.01_25/45%)] lg:hidden"
     >
       <div className="mx-auto grid max-w-lg" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
         {items.map((item) => {
@@ -172,10 +175,10 @@ function BottomTabs({ area, onMore }: { area: ShellArea; onMore: () => void }) {
               key={item.href}
               href={item.href}
               aria-current={isCurrent ? "page" : undefined}
-              className={cn(tabClass, isCurrent ? "text-brand" : "text-muted-foreground")}
+              className={cn(tabClass, isCurrent ? "text-white" : "text-white/70")}
             >
-              {isCurrent ? <span className="absolute top-0 h-0.5 w-8 rounded-b-full bg-brand" aria-hidden /> : null}
-              <span className={cn("flex h-7 w-12 items-center justify-center rounded-full transition-colors", isCurrent && "bg-brand-soft")}>
+              {isCurrent ? <span className="absolute top-0 h-0.5 w-8 rounded-b-full bg-white" aria-hidden /> : null}
+              <span className={cn("flex h-7 w-12 items-center justify-center rounded-full transition-colors", isCurrent && "bg-white/20")}>
                 <Icon className="size-5" aria-hidden />
               </span>
               {item.tab}
@@ -183,7 +186,7 @@ function BottomTabs({ area, onMore }: { area: ShellArea; onMore: () => void }) {
           );
         })}
         {hasMore ? (
-          <button type="button" onClick={onMore} className={cn(tabClass, "text-muted-foreground")}>
+          <button type="button" onClick={onMore} className={cn(tabClass, "text-white/70")}>
             <span className="flex h-7 w-12 items-center justify-center rounded-full">
               <Menu className="size-5" aria-hidden />
             </span>
@@ -223,7 +226,7 @@ export function AppShell({ area, userName, userEmail, children }: AppShellProps)
         {isReadOnly ? (
           <div
             role="status"
-            className="flex items-center justify-center gap-2 border-b border-gold/40 bg-gold-soft px-4 py-2 text-center text-xs font-semibold text-warning sm:text-sm"
+            className="flex items-center justify-center gap-2 border-b border-warning/30 bg-warning-soft px-4 py-2 text-center text-xs font-semibold text-warning sm:text-sm"
           >
             <Eye className="size-4 shrink-0" aria-hidden />
             <span>
@@ -232,21 +235,21 @@ export function AppShell({ area, userName, userEmail, children }: AppShellProps)
           </div>
         ) : null}
 
-        <header className="sticky top-0 z-30 border-b bg-background/85 backdrop-blur-md">
+        <header className="sticky top-0 z-30 border-b border-white/10 bg-brand text-white shadow-[0_8px_24px_-16px_oklch(0.16_0.01_25/60%)]">
           <div className="flex h-14 items-center gap-2 px-3 sm:px-6 lg:h-16 lg:px-8">
-            <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open navigation menu" onClick={() => setIsMenuOpen(true)}>
+            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 hover:text-white lg:hidden" aria-label="Open navigation menu" onClick={() => setIsMenuOpen(true)}>
               <Menu className="size-5" />
             </Button>
             <Link href={HOME[area]} className="flex items-center gap-2 lg:hidden" aria-label="Home">
-              <BrandLogo className="[&>span:first-child]:text-xl" />
-              <span className="hidden text-sm font-semibold text-navy min-[380px]:inline">2017 Elections</span>
+              <BrandLogo isInverted className="[&>span:first-child]:text-xl" />
+              <span className="hidden text-sm font-semibold text-white min-[380px]:inline">2017 Elections</span>
             </Link>
-            <p className="hidden text-sm font-medium text-muted-foreground lg:block">{AREA_LABEL[area]}</p>
+            <p className="hidden text-sm font-medium text-white/80 lg:block">{AREA_LABEL[area]}</p>
             <div className="ml-auto">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-10 gap-2 rounded-full pl-1 pr-1 sm:pr-3" aria-label="Account menu">
-                    <span className="flex size-8 items-center justify-center rounded-full bg-navy text-xs font-semibold text-white">
+                  <Button variant="ghost" className="h-10 gap-2 rounded-full pl-1 pr-1 text-white hover:bg-white/10 hover:text-white aria-expanded:bg-white/10 aria-expanded:text-white sm:pr-3" aria-label="Account menu">
+                    <span className="flex size-8 items-center justify-center rounded-full bg-ink text-xs font-semibold text-white">
                       {initialsOf(userName) || <UserRound className="size-4" aria-hidden />}
                     </span>
                     <span className="hidden max-w-48 truncate text-sm font-medium sm:inline">{userName}</span>

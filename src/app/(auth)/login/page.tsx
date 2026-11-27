@@ -24,7 +24,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
   return (
     <Card className="shadow-sm">
       <CardHeader>
-        <CardTitle className="text-2xl text-navy">Sign in</CardTitle>
+        <CardTitle className="text-2xl text-ink">Sign in</CardTitle>
         <CardDescription>Use the email address and password sent to you by the election administrator.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">

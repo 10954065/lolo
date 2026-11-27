@@ -126,7 +126,7 @@ export function MembersTable({ rows, basePath, canManage }: MembersTableProps) {
                   </TableCell>
                 ) : null}
                 <TableCell>
-                  <Link href={`${basePath}/${r.id}`} className="font-medium text-navy hover:text-brand hover:underline">
+                  <Link href={`${basePath}/${r.id}`} className="font-medium text-ink hover:text-brand hover:underline">
                     {r.fullName}
                   </Link>
                   <p className="text-xs text-muted-foreground">{r.email}</p>

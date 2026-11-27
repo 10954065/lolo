@@ -31,7 +31,7 @@ export default async function VoterHomePage() {
       />
       <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <section className="space-y-4" aria-labelledby="my-elections">
-          <h2 id="my-elections" className="text-lg font-semibold text-navy">
+          <h2 id="my-elections" className="text-lg font-semibold text-ink">
             My elections
           </h2>
           {elections.length === 0 ? (
@@ -45,11 +45,11 @@ export default async function VoterHomePage() {
               const status = effectiveStatus(e, now);
               const canVote = acceptsVotes(e, now) && !votedAt;
               return (
-                <Card key={e.id} className={canVote ? "relative border-brand/40 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-linear-to-r before:from-brand before:to-gold" : undefined}>
+                <Card key={e.id} className={canVote ? "relative border-brand/40 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-linear-to-r before:from-brand before:to-ink" : undefined}>
                   <CardContent className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="min-w-0 space-y-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="font-semibold text-navy">{e.title}</h3>
+                        <h3 className="font-semibold text-ink">{e.title}</h3>
                         <StatusBadge status={status} />
                       </div>
                       <p className="flex items-center gap-1.5 text-sm text-muted-foreground">

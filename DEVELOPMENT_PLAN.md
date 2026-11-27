@@ -9,9 +9,11 @@
 * Tooling available: Node.js 26, npm 11, Git, Docker (used for a local
   PostgreSQL 17 instance).
 * Branding: the Mfantsipim Old Boys Association logo (red crest and red
-  "MOBA" wordmark). The interface uses the crest red as the brand colour on a
-  neutral white/grey/navy base, replacing the brief's navy-and-gold
-  suggestion so the platform matches the association's identity.
+  "MOBA" wordmark). The interface follows Mfantsipim School's colours, crimson
+  and black: crimson leads (headers, hero, navigation, primary actions), black
+  carries text and the footer, on a light warm background. The school motto
+  "Dwen Hwɛ Kan" (Think and look ahead) appears in the footer and menus. This
+  replaces the brief's navy-and-gold suggestion.
 
 ## 2. Phases
 

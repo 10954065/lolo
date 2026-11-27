@@ -20,17 +20,17 @@ export default async function HelpPage() {
   return (
     <PublicShell>
       <article className="max-w-3xl space-y-6">
-        <h1 className="text-3xl font-bold text-navy">Help and support</h1>
+        <h1 className="text-3xl font-bold text-ink">Help and support</h1>
         <dl className="space-y-4">
           {FAQ.map(([q, a]) => (
             <div key={q} className="rounded-xl border bg-card p-4">
-              <dt className="font-semibold text-navy">{q}</dt>
+              <dt className="font-semibold text-ink">{q}</dt>
               <dd className="mt-1 text-sm text-muted-foreground">{a}</dd>
             </div>
           ))}
         </dl>
         <section className="rounded-xl border bg-card p-5">
-          <h2 className="font-semibold text-navy">Contact</h2>
+          <h2 className="font-semibold text-ink">Contact</h2>
           {settings.supportEmail || settings.supportPhone ? (
             <ul className="mt-2 space-y-1 text-sm">
               {settings.supportEmail ? (

@@ -24,7 +24,7 @@ export function ElectionsTable({ rows, now, basePath }: { rows: Rows; now: Date;
           {rows.map((e) => (
             <TableRow key={e.id}>
               <TableCell>
-                <Link href={`${basePath}/${e.id}`} className="font-medium text-navy hover:text-brand hover:underline">
+                <Link href={`${basePath}/${e.id}`} className="font-medium text-ink hover:text-brand hover:underline">
                   {e.title}
                 </Link>
                 <p className="text-xs text-muted-foreground">{e.electionYear}</p>

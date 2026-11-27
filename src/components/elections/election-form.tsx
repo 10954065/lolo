@@ -66,7 +66,7 @@ export function ElectionForm({ action, defaults, isCreate }: ElectionFormProps) 
         />
       </div>
       <fieldset className="grid gap-5 sm:grid-cols-2">
-        <legend className="mb-2 text-sm font-semibold text-navy">Voting period (Africa/Accra time, GMT)</legend>
+        <legend className="mb-2 text-sm font-semibold text-ink">Voting period (Africa/Accra time, GMT)</legend>
         <TextField name="opensAt" label="Voting opens" type="datetime-local" required defaultValue={defaults?.opensAt} state={state} />
         <TextField name="closesAt" label="Voting closes" type="datetime-local" required defaultValue={defaults?.closesAt} state={state} />
       </fieldset>

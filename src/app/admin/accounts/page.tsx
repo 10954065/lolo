@@ -65,7 +65,7 @@ export default async function StaffAccountsPage() {
               return (
                 <TableRow key={a.id}>
                   <TableCell className="align-top">
-                    <p className="font-medium text-navy">
+                    <p className="font-medium text-ink">
                       {a.fullName} {isSelf ? <Badge variant="outline">You</Badge> : null}
                     </p>
                     <p className="text-xs text-muted-foreground">{a.email}</p>

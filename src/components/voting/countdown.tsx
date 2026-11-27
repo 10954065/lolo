@@ -20,7 +20,7 @@ export function Countdown({ target, label }: { target: string; label: string }) 
   if (remaining <= 0) return null;
   return (
     <p className="text-sm text-muted-foreground" aria-live="polite">
-      {label} <span className="font-semibold text-navy">{formatDuration(remaining)}</span>
+      {label} <span className="font-semibold text-ink">{formatDuration(remaining)}</span>
     </p>
   );
 }

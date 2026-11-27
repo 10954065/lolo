@@ -41,7 +41,7 @@ export default async function VoterElectionPage({ params }: PageProps<"/dashboar
           <Card className="border-brand/40 bg-brand-soft/40">
             <CardContent className="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-lg font-semibold text-navy">Voting is open</p>
+                <p className="text-lg font-semibold text-ink">Voting is open</p>
                 <p className="text-sm text-muted-foreground">Closes {formatDateTime(election.closesAt)}</p>
                 <Countdown target={election.closesAt.toISOString()} label="Time remaining:" />
               </div>
@@ -98,7 +98,7 @@ export default async function VoterElectionPage({ params }: PageProps<"/dashboar
               <PlainText text={election.description} />
               {election.instructions ? (
                 <div>
-                  <h3 className="font-semibold text-navy">How to vote</h3>
+                  <h3 className="font-semibold text-ink">How to vote</h3>
                   <PlainText text={election.instructions} className="text-muted-foreground" />
                 </div>
               ) : null}
@@ -114,12 +114,12 @@ export default async function VoterElectionPage({ params }: PageProps<"/dashboar
 
         {["SCHEDULED", "OPEN", "CLOSED", "RESULTS_PUBLISHED", "ARCHIVED"].includes(status) ? (
           <section className="space-y-6" aria-labelledby="candidates-heading">
-            <h2 id="candidates-heading" className="text-xl font-semibold text-navy">
+            <h2 id="candidates-heading" className="text-xl font-semibold text-ink">
               Candidates
             </h2>
             {view.positions.map((p) => (
               <div key={p.id} className="space-y-3">
-                <h3 className="font-semibold text-navy">{p.title}</h3>
+                <h3 className="font-semibold text-ink">{p.title}</h3>
                 {p.candidates.length === 0 ? (
                   <p className="text-sm text-muted-foreground">No candidates.</p>
                 ) : (

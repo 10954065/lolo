@@ -14,7 +14,7 @@ export default function VerifyReceiptPage() {
       </Link>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl text-navy">Verify a ballot receipt</CardTitle>
+          <CardTitle className="text-2xl text-ink">Verify a ballot receipt</CardTitle>
           <CardDescription>
             Enter the receipt shown after you voted to confirm that your ballot is stored and will be counted. This check
             never reveals how anyone voted, and the receipt is not linked to your name.

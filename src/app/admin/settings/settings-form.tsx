@@ -25,7 +25,7 @@ export function SettingsForm({ values }: { values: SettingsValues }) {
     <form action={formAction} className="space-y-6" noValidate>
       <FormAlert state={state?.ok ? null : state} />
       <fieldset className="grid gap-5 sm:grid-cols-2">
-        <legend className="mb-3 text-sm font-semibold text-navy">Organisation &amp; support</legend>
+        <legend className="mb-3 text-sm font-semibold text-ink">Organisation &amp; support</legend>
         <TextField
           name="organizationName"
           label="Organisation name"
@@ -45,7 +45,7 @@ export function SettingsForm({ values }: { values: SettingsValues }) {
         <TextField name="supportPhone" label="Support phone" type="tel" defaultValue={values.supportPhone} state={state} />
       </fieldset>
       <fieldset className="grid gap-5 sm:grid-cols-3">
-        <legend className="mb-3 text-sm font-semibold text-navy">Account security</legend>
+        <legend className="mb-3 text-sm font-semibold text-ink">Account security</legend>
         <TextField
           name="tempPasswordValidityDays"
           label="Temporary password validity (days)"

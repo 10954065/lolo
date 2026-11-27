@@ -52,7 +52,7 @@ export default async function CandidatesPage({ params }: PageProps<"/admin/elect
                       <CandidatePhoto candidateId={c.id} name={c.fullName} hasPhoto={hasPhoto} version={photoVersion} size="sm" />
                       <Link
                         href={`/admin/elections/${id}/candidates/${c.id}`}
-                        className="min-w-0 flex-1 font-medium text-navy hover:text-brand hover:underline"
+                        className="min-w-0 flex-1 font-medium text-ink hover:text-brand hover:underline"
                       >
                         {c.fullName}
                       </Link>
