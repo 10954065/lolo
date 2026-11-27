@@ -48,7 +48,7 @@ export default async function AdminOverviewPage() {
         <h2 id="members-heading" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Members
         </h2>
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
           <StatCard label="Registered members" value={stats.total} icon={Users} href="/admin/members" />
           <StatCard label="Pending approval" value={stats.pending} icon={Clock} tone={stats.pending ? "warning" : "default"} href="/admin/members?approval=PENDING" />
           <StatCard label="Approved" value={stats.approved} icon={UserCheck} tone="success" href="/admin/members?approval=APPROVED" />
@@ -59,7 +59,7 @@ export default async function AdminOverviewPage() {
         <h2 id="credentials-heading" className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Credentials &amp; email
         </h2>
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
           <StatCard label="Awaiting credentials" value={awaitingCredentials} icon={KeyRound} tone={awaitingCredentials ? "warning" : "default"} href="/admin/credentials" />
           <StatCard label="Accounts activated" value={stats.credentials.ACTIVATED ?? 0} icon={UserCheck} tone="success" hint="Members who set their own password" />
           <StatCard label="Emails sent / delivered" value={emails.SENT + emails.DELIVERED} icon={Mail} hint={`${emails.QUEUED + emails.SENDING} waiting to send`} href="/admin/emails" />

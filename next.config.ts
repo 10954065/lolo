@@ -1,4 +1,8 @@
+import { existsSync } from "node:fs";
 import type { NextConfig } from "next";
+
+/** The official logo is optional; when it is absent the UI uses a wordmark and never requests it. */
+const hasBrandLogo = existsSync("public/brand/moba-logo.png");
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -16,6 +20,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  env: { NEXT_PUBLIC_HAS_BRAND_LOGO: hasBrandLogo ? "1" : "" },
   reactStrictMode: true,
   serverExternalPackages: ["@node-rs/argon2", "sharp"],
   experimental: {

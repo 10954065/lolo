@@ -10,6 +10,12 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-geist-sans);
+  --font-display: var(--font-serif-display);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-navy-deep: var(--navy-deep);
+  --shadow-card: 0 1px 2px oklch(0.24 0.05 262 / 5%), 0 6px 20px -10px oklch(0.24 0.05 262 / 12%);
+  --shadow-lift: 0 2px 4px oklch(0.24 0.05 262 / 6%), 0 16px 32px -12px oklch(0.24 0.05 262 / 22%);
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
   --color-brand-soft: var(--brand-soft);
@@ -57,48 +63,51 @@
 }
 
 :root {
-  /* MOBA brand: crest red on a neutral white / light-grey / navy base */
-  --brand: oklch(0.505 0.196 27.5); /* ~ #B5171E crest red */
-  --brand-strong: oklch(0.44 0.17 27.5);
-  --brand-soft: oklch(0.965 0.02 27.5);
-  --navy: oklch(0.255 0.045 262); /* ~ #14213D */
-  --success: oklch(0.5 0.13 150);
-  --success-soft: oklch(0.96 0.03 150);
-  --warning: oklch(0.55 0.13 65);
-  --warning-soft: oklch(0.97 0.04 85);
+  /* MOBA brand: crest red and deep navy on warm ivory, with a restrained gold accent. */
+  --brand: oklch(0.5 0.2 27.5); /* ~ #B5171E crest red */
+  --brand-strong: oklch(0.43 0.175 27.5);
+  --brand-soft: oklch(0.955 0.03 27.5);
+  --navy: oklch(0.27 0.06 262); /* ~ #14213D */
+  --navy-deep: oklch(0.2 0.05 264);
+  --gold: oklch(0.76 0.13 78);
+  --gold-soft: oklch(0.95 0.05 88);
+  --success: oklch(0.5 0.13 152);
+  --success-soft: oklch(0.955 0.04 152);
+  --warning: oklch(0.52 0.13 60);
+  --warning-soft: oklch(0.965 0.05 85);
 
-  --background: oklch(0.984 0.002 260);
-  --foreground: oklch(0.22 0.03 262);
+  --background: oklch(0.982 0.006 85);
+  --foreground: oklch(0.23 0.04 262);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.03 262);
+  --card-foreground: oklch(0.23 0.04 262);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.03 262);
+  --popover-foreground: oklch(0.23 0.04 262);
   --primary: var(--brand);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.955 0.005 262);
-  --secondary-foreground: oklch(0.255 0.045 262);
-  --muted: oklch(0.955 0.005 262);
-  --muted-foreground: oklch(0.46 0.02 262);
-  --accent: oklch(0.95 0.008 262);
-  --accent-foreground: oklch(0.255 0.045 262);
-  --destructive: oklch(0.55 0.22 27);
-  --border: oklch(0.91 0.006 262);
-  --input: oklch(0.86 0.008 262);
-  --ring: oklch(0.505 0.196 27.5 / 55%);
-  --chart-1: oklch(0.505 0.196 27.5);
-  --chart-2: oklch(0.255 0.045 262);
-  --chart-3: oklch(0.6 0.1 230);
-  --chart-4: oklch(0.7 0.13 75);
-  --chart-5: oklch(0.55 0.12 150);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.225 0.042 262);
-  --sidebar-foreground: oklch(0.94 0.01 262);
+  --secondary: oklch(0.955 0.008 80);
+  --secondary-foreground: oklch(0.27 0.06 262);
+  --muted: oklch(0.955 0.008 80);
+  --muted-foreground: oklch(0.47 0.025 262);
+  --accent: oklch(0.945 0.012 80);
+  --accent-foreground: oklch(0.27 0.06 262);
+  --destructive: oklch(0.54 0.21 27);
+  --border: oklch(0.905 0.01 80);
+  --input: oklch(0.85 0.012 80);
+  --ring: oklch(0.5 0.2 27.5 / 55%);
+  --chart-1: oklch(0.5 0.2 27.5);
+  --chart-2: oklch(0.27 0.06 262);
+  --chart-3: oklch(0.76 0.13 78);
+  --chart-4: oklch(0.6 0.1 230);
+  --chart-5: oklch(0.55 0.12 152);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.21 0.05 264);
+  --sidebar-foreground: oklch(0.93 0.012 262);
   --sidebar-primary: var(--brand);
   --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.3 0.045 262);
+  --sidebar-accent: oklch(0.29 0.055 262);
   --sidebar-accent-foreground: oklch(0.99 0 0);
-  --sidebar-border: oklch(0.32 0.04 262);
-  --sidebar-ring: oklch(0.505 0.196 27.5);
+  --sidebar-border: oklch(0.32 0.05 262);
+  --sidebar-ring: oklch(0.5 0.2 27.5);
 }
 
 @layer base {
@@ -114,6 +123,25 @@
   }
   html {
     @apply font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  /* Small uppercase section labels stay in the sans face. */
+  h2.uppercase {
+    font-family: var(--font-sans);
+    letter-spacing: 0.08em;
+  }
+  /* 16px text on phones stops iOS from zooming into form fields. */
+  @media (max-width: 639px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
   }
   :focus-visible {
     outline: 2px solid var(--brand);
@@ -127,4 +155,25 @@
       transition-duration: 0.01ms !important;
     }
   }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Space for the iPhone home indicator under fixed bottom bars. */
+@utility pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* Navy band with a faint diagonal weave and a warm red glow, used behind heroes. */
+@utility bg-crest {
+  background-color: var(--navy-deep);
+  background-image:
+    radial-gradient(120% 80% at 100% 0%, oklch(0.5 0.2 27.5 / 38%) 0%, transparent 55%),
+    radial-gradient(90% 70% at 0% 100%, oklch(0.76 0.13 78 / 14%) 0%, transparent 60%),
+    repeating-linear-gradient(135deg, oklch(1 0 0 / 3%) 0 1px, transparent 1px 14px);
 }

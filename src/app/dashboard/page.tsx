@@ -45,8 +45,8 @@ export default async function VoterHomePage() {
               const status = effectiveStatus(e, now);
               const canVote = acceptsVotes(e, now) && !votedAt;
               return (
-                <Card key={e.id} className={canVote ? "border-brand/50 shadow-sm" : undefined}>
-                  <CardContent className="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
+                <Card key={e.id} className={canVote ? "relative border-brand/40 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-linear-to-r before:from-brand before:to-gold" : undefined}>
+                  <CardContent className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="min-w-0 space-y-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <h3 className="font-semibold text-navy">{e.title}</h3>
@@ -66,18 +66,20 @@ export default async function VoterHomePage() {
                         <Countdown target={e.opensAt.toISOString()} label="Voting opens in" />
                       ) : null}
                     </div>
-                    <div className="flex shrink-0 gap-2">
+                    <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
                       {canVote ? (
-                        <Button asChild size="lg" className="h-11">
-                          <Link href={`/dashboard/elections/${e.id}/ballot`}>Vote now</Link>
+                        <Button asChild size="lg" className="h-12 w-full text-base sm:h-11 sm:w-auto">
+                          <Link href={`/dashboard/elections/${e.id}/ballot`}>
+                            <Vote className="size-4" aria-hidden /> Vote now
+                          </Link>
                         </Button>
                       ) : null}
                       {status === "RESULTS_PUBLISHED" ? (
-                        <Button asChild variant="outline">
+                        <Button asChild variant="outline" className="w-full sm:w-auto">
                           <Link href={`/dashboard/results/${e.id}`}>View results</Link>
                         </Button>
                       ) : null}
-                      <Button asChild variant="outline">
+                      <Button asChild variant="outline" className="w-full sm:w-auto">
                         <Link href={`/dashboard/elections/${e.id}`}>Details &amp; candidates</Link>
                       </Button>
                     </div>

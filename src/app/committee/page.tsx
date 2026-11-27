@@ -35,7 +35,7 @@ export default async function CommitteeOverviewPage() {
             <p className="rounded-xl border border-dashed bg-card p-6 text-sm text-muted-foreground">No elections yet.</p>
           )}
         </section>
-        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <section className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
           <StatCard label="Registered members" value={stats.total} icon={Users} href="/committee/members" />
           <StatCard label="Pending approval" value={stats.pending} icon={Clock} href="/committee/members?approval=PENDING" />
           <StatCard label="Eligible (approved & active)" value={stats.eligible} icon={UserCheck} tone="success" />

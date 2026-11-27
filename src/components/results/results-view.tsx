@@ -31,7 +31,7 @@ export function ResultsView({ snapshot, resolutions, isProvisional, publishedAt,
           {sha256 ? <code className="break-all text-xs">SHA-256 {sha256}</code> : null}
         </p>
       ) : null}
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
         <StatCard label="Eligible voters" value={snapshot.eligibleVoters} icon={Users} />
         <StatCard label="Ballots cast" value={snapshot.ballotsCast} icon={Vote} tone="brand" hint="Invalid ballots: 0 (rejected before recording)" />
         <StatCard label="Turnout" value={`${snapshot.turnoutPercent}%`} icon={Award} tone="success" />

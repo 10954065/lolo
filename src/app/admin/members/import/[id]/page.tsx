@@ -44,7 +44,7 @@ export default async function ImportPreviewPage({ params }: PageProps<"/admin/me
         backHref="/admin/members/import"
         backLabel="Bulk registration"
       />
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <StatCard label="Rows in file" value={batch.totalRows} />
         <StatCard label="Ready to import" value={batch.validRows} icon={CheckCircle2} tone="success" />
         <StatCard label="Invalid" value={batch.invalidRows} icon={XCircle} tone={batch.invalidRows ? "danger" : "default"} />

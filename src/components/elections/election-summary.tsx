@@ -15,7 +15,7 @@ export function ElectionSummary({ election, counts, now }: { election: ElectionR
   const turnout = counts.voters ? Math.round((counts.voted / counts.voters) * 1000) / 10 : 0;
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
         <StatCard label="Executive positions" value={counts.positions} icon={ListChecks} />
         <StatCard label="Approved candidates" value={counts.approvedCandidates} icon={UserCheck} hint={`${counts.pendingCandidates} awaiting decision`} />
         <StatCard label="Eligible voters" value={counts.voters} icon={Users} />

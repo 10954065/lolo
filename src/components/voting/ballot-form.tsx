@@ -200,8 +200,8 @@ export function BallotForm({ electionId, electionTitle, positions, action }: Bal
                       <label
                         key={c.id}
                         className={cn(
-                          "flex min-h-16 cursor-pointer items-center gap-4 rounded-lg border-2 p-3 transition-colors",
-                          isChosen ? "border-brand bg-brand-soft" : "border-border hover:border-brand/40",
+                          "flex min-h-16 cursor-pointer items-center gap-4 rounded-xl border-2 bg-card p-3 shadow-xs transition-all active:scale-[0.99]",
+                          isChosen ? "border-brand bg-brand-soft shadow-card ring-4 ring-brand/10" : "border-border hover:border-brand/40",
                         )}
                       >
                         <input
@@ -220,7 +220,7 @@ export function BallotForm({ electionId, electionTitle, positions, action }: Bal
                   {p.allowAbstain ? (
                     <label
                       className={cn(
-                        "flex min-h-12 cursor-pointer items-center gap-4 rounded-lg border-2 border-dashed p-3 text-muted-foreground",
+                        "flex min-h-12 cursor-pointer items-center gap-4 rounded-xl border-2 border-dashed p-3 text-muted-foreground",
                         chosen.includes(ABSTAIN) ? "border-navy bg-secondary text-foreground" : "border-border",
                       )}
                     >
@@ -239,7 +239,7 @@ export function BallotForm({ electionId, electionTitle, positions, action }: Bal
               </fieldset>
             );
           })}
-          <div className="sticky bottom-0 -mx-4 border-t bg-background/95 px-4 py-3 backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0">
+          <div className="sticky bottom-0 -mx-4 border-t bg-background/95 px-4 pt-3 pb-safe shadow-[0_-8px_24px_-16px_oklch(0.24_0.05_262/35%)] backdrop-blur-md sm:static sm:shadow-none sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0">
             <Button type="button" className="h-12 w-full text-base sm:w-auto" onClick={goToReview}>
               Review my choices
             </Button>

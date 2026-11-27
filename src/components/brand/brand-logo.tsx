@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
  * falls back to a typographic wordmark in the crest red, so the UI never shows a broken image.
  */
 const LOGO_SRC = "/brand/moba-logo.png";
+/** Set at build time by next.config.ts from whether the file exists. */
+const HAS_LOGO_FILE = process.env.NEXT_PUBLIC_HAS_BRAND_LOGO === "1";
 
 type LogoState = "loading" | "loaded" | "failed";
 
@@ -43,7 +45,7 @@ function Wordmark({ className, variant, isInverted }: Required<Omit<BrandLogoPro
 export function BrandLogo({ className, variant = "compact", isInverted = false }: BrandLogoProps) {
   const [state, setState] = useState<LogoState>("loading");
 
-  if (isInverted || state === "failed") {
+  if (!HAS_LOGO_FILE || isInverted || state === "failed") {
     return <Wordmark className={className} variant={variant} isInverted={isInverted} />;
   }
 

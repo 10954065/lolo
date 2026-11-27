@@ -19,6 +19,8 @@ export interface NavItem {
   icon: LucideIcon;
   /** Only highlight on an exact path match (area roots and sibling-prefixed routes). */
   isExact?: boolean;
+  /** Shown in the phone bottom tab bar, under this short label. Everything else lives under "More". */
+  tab?: string;
 }
 
 export interface NavSection {
@@ -30,14 +32,14 @@ export const NAV: Record<ShellArea, NavSection[]> = {
   admin: [
     {
       items: [
-        { href: "/admin", label: "Overview", icon: LayoutDashboard, isExact: true },
-        { href: "/admin/elections", label: "Elections", icon: Vote },
+        { href: "/admin", label: "Overview", icon: LayoutDashboard, isExact: true, tab: "Home" },
+        { href: "/admin/elections", label: "Elections", icon: Vote, tab: "Elections" },
       ],
     },
     {
       title: "Members",
       items: [
-        { href: "/admin/members", label: "Members", icon: Users, isExact: true },
+        { href: "/admin/members", label: "Members", icon: Users, isExact: true, tab: "Members" },
         { href: "/admin/members/import", label: "Bulk registration", icon: FileSpreadsheet },
         { href: "/admin/credentials", label: "Credentials", icon: KeyRound },
         { href: "/admin/emails", label: "Email delivery", icon: Mail },
@@ -56,8 +58,8 @@ export const NAV: Record<ShellArea, NavSection[]> = {
   committee: [
     {
       items: [
-        { href: "/committee", label: "Overview", icon: LayoutDashboard, isExact: true },
-        { href: "/committee/elections", label: "Elections", icon: Vote },
+        { href: "/committee", label: "Overview", icon: LayoutDashboard, isExact: true, tab: "Home" },
+        { href: "/committee/elections", label: "Elections", icon: Vote, tab: "Elections" },
       ],
     },
     {
@@ -66,16 +68,16 @@ export const NAV: Record<ShellArea, NavSection[]> = {
         { href: "/committee/members", label: "Member records", icon: Users },
         { href: "/committee/emails", label: "Email delivery", icon: Mail },
         { href: "/committee/reports", label: "Reports", icon: FileSpreadsheet },
-        { href: "/committee/audit", label: "Audit log", icon: ScrollText },
+        { href: "/committee/audit", label: "Audit log", icon: ScrollText, tab: "Audit" },
       ],
     },
   ],
   voter: [
     {
       items: [
-        { href: "/dashboard", label: "My elections", icon: LayoutDashboard, isExact: true },
-        { href: "/dashboard/profile", label: "My profile", icon: UserCog },
-        { href: "/verify-receipt", label: "Verify a receipt", icon: ScrollText },
+        { href: "/dashboard", label: "My elections", icon: LayoutDashboard, isExact: true, tab: "Elections" },
+        { href: "/dashboard/profile", label: "My profile", icon: UserCog, tab: "Profile" },
+        { href: "/verify-receipt", label: "Verify a receipt", icon: ScrollText, tab: "Verify" },
       ],
     },
   ],

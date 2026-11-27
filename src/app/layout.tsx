@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import { headers } from "next/headers";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,6 +7,7 @@ import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const serifDisplay = Source_Serif_4({ variable: "--font-serif-display", subsets: ["latin"], weight: ["600", "700"] });
 
 export const metadata: Metadata = {
   title: {
@@ -20,9 +21,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#B5171E",
+  themeColor: "#141f3a",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
@@ -31,7 +33,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   await headers();
 
   return (
-    <html lang="en-GH" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="en-GH" className={`${geistSans.variable} ${geistMono.variable} ${serifDisplay.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <a
           href="#main-content"

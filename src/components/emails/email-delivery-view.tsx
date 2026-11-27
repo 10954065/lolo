@@ -36,7 +36,7 @@ export async function EmailDeliveryView({
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
         <StatCard label="Waiting to send" value={counts.QUEUED + counts.SENDING} href={`${basePath}?status=QUEUED`} />
         <StatCard label="Sent" value={counts.SENT} href={`${basePath}?status=SENT`} />
         <StatCard label="Delivered" value={counts.DELIVERED} tone="success" href={`${basePath}?status=DELIVERED`} />
